@@ -30,7 +30,7 @@ fun generateAnimationUiDataList(): List<AnimationUiData> {
 fun AnimationExploreScreenAndroidPreview() {
     TrueTheme {
         AnimationGrid(
-            screenData = ExploreScreenStates.GridData(
+            screenData = ExploreScreenStates.Success(
                 animations = generateAnimationUiDataList(),
                 categories = AnimationCategory.entries.map {
                     SelectedQueryType.Tag(it.strResource.string)

@@ -1,10 +1,10 @@
 package com.osg.openanimation
 
 import com.osg.core.ui.BaseApp
-import com.osg.openanimation.repo.AnimationDataFetcherFake
+import com.osg.openanimation.repo.AnimationContentLoaderFake
 import com.osg.openanimation.repo.AnimationMetadataRepositoryFake
 import com.osg.openanimation.repo.SignInProviderSim
-import com.osg.openanimation.repo.SubmitReportHandlerFake
+import com.osg.openanimation.repo.ReportSubmissionServiceFake
 import com.osg.openanimation.repo.UserRepositoryFake
 
 val basePreviewApp by lazy {
@@ -16,13 +16,13 @@ val basePreviewApp by lazy {
             UserRepositoryFake()
         },
         dataFetcher = {
-            AnimationDataFetcherFake()
+            AnimationContentLoaderFake()
         },
         signInLoader = {
             SignInProviderSim()
         },
         reportHandlerLoader = {
-            SubmitReportHandlerFake()
+            ReportSubmissionServiceFake()
         },
         baseUrl = "http://localhost:8080"
     )

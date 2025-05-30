@@ -1,6 +1,6 @@
 package com.osg.openanimation.repo
 
-import com.osg.core.ui.di.UserProfileStates
+import com.osg.core.ui.di.UserSessionState
 import com.osg.core.ui.di.UserRepository
 import com.osg.openanimation.core.data.stats.AnimationStats
 import com.osg.openanimation.core.data.use.UserProfile
@@ -12,12 +12,12 @@ import kotlinx.coroutines.flow.update
 
 class UserRepositoryFake: UserRepository {
     @OptIn(ExperimentalCoroutinesApi::class)
-    override val profileFlow: Flow<UserProfileStates> = RepositoryFakeStateFlow.uidState.flatMapLatest {
+    override val profileFlow: Flow<UserSessionState> = RepositoryFakeStateFlow.uidState.flatMapLatest {
         RepositoryFakeStateFlow.userLikedAnimationsState.map { likedSet ->
             if (it == null) {
-                UserProfileStates.SignedOut
+                UserSessionState.SignedOut
             } else {
-                UserProfileStates.SignedIn(
+                UserSessionState.SignedIn(
                     userProfile = UserProfile(
                         uid = it,
                         firstName = "Test User",

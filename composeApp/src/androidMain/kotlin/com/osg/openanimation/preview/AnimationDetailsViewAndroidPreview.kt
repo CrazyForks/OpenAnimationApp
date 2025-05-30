@@ -8,7 +8,7 @@ import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import com.osg.core.ui.details.AnimationDetailsPanes
 import com.osg.core.ui.details.AnimationDetailsView
 import com.osg.core.ui.details.DetailsUiPane
-import com.osg.core.ui.di.UserProfileStates
+import com.osg.core.ui.di.UserSessionState
 import com.osg.core.ui.theme.TrueTheme
 import com.osg.openanimation.core.data.animation.AnimationMetadata
 import com.osg.openanimation.core.data.stats.AnimationStats
@@ -30,7 +30,7 @@ fun AnimationDetailsPanesAndroidPreview() {
                 animationStats = AnimationStats(
 
                 ),
-                signInState = UserProfileStates.SignedOut,
+                signInState = UserSessionState.SignedOut,
             ),
             onLikeClick = {},
             onDownloadClick = {},
@@ -58,7 +58,7 @@ fun AnimationDetailsViewAndroidPreview() {
                 animationStats = AnimationStats(
 
                 ),
-                signInState = UserProfileStates.SignedOut,
+                signInState = UserSessionState.SignedOut,
             ),
             onLikeClick = {},
             onDownloadClick = {},
