@@ -1,6 +1,6 @@
 package com.osg.openanimation.repo
 
-import com.osg.core.ui.components.lottie.AnimationDataState
+import com.osg.openanimation.core.ui.components.lottie.AnimationDataState
 import com.osg.openanimation.core.data.animation.AnimationMetadata
 import openanimationapp.composeapp.generated.resources.Res
 

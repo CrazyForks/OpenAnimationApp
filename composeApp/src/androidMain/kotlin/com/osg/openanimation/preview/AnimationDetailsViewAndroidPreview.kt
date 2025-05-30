@@ -5,11 +5,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
-import com.osg.core.ui.details.AnimationDetailsPanes
-import com.osg.core.ui.details.AnimationDetailsView
-import com.osg.core.ui.details.DetailsUiPane
-import com.osg.core.ui.di.UserSessionState
-import com.osg.core.ui.theme.TrueTheme
+import com.osg.openanimation.core.ui.details.AnimationDetailsPanes
+import com.osg.openanimation.core.ui.details.AnimationDetailsView
+import com.osg.openanimation.core.ui.details.DetailsUiPane
+import com.osg.openanimation.core.ui.di.UserSessionState
+import com.osg.openanimation.core.ui.theme.TrueTheme
 import com.osg.openanimation.core.data.animation.AnimationMetadata
 import com.osg.openanimation.core.data.stats.AnimationStats
 import com.osg.openanimation.repo.AnimationDataCollection

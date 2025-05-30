@@ -2,8 +2,8 @@ package com.osg.openanimation.preview
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.osg.core.ui.components.bar.ModalNavigationDrawerContent
-import com.osg.core.ui.theme.TrueTheme
+import com.osg.openanimation.core.ui.components.bar.ModalNavigationDrawerContent
+import com.osg.openanimation.core.ui.theme.TrueTheme
 
 @Preview
 @Composable

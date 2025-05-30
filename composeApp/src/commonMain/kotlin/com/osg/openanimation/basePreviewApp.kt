@@ -1,15 +1,18 @@
 package com.osg.openanimation
 
-import com.osg.core.ui.BaseApp
+import com.osg.openanimation.core.ui.BaseApp
 import com.osg.openanimation.repo.AnimationContentLoaderFake
 import com.osg.openanimation.repo.AnimationMetadataRepositoryFake
 import com.osg.openanimation.repo.SignInProviderSim
 import com.osg.openanimation.repo.ReportSubmissionServiceFake
 import com.osg.openanimation.repo.UserRepositoryFake
+import org.koin.core.module.Module
 
-val basePreviewApp by lazy {
-    BaseApp(
-        metadataRepository ={
+fun getBaseApp(
+    platformModules : List<Module> = emptyList()
+): BaseApp{
+    return BaseApp(
+        metadataRepository = {
             AnimationMetadataRepositoryFake()
         },
         userRepository = {
@@ -24,6 +27,7 @@ val basePreviewApp by lazy {
         reportHandlerLoader = {
             ReportSubmissionServiceFake()
         },
-        baseUrl = "http://localhost:8080"
+        baseUrl = "http://localhost:8080",
+        platformModules = platformModules
     )
 }

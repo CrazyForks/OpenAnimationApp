@@ -2,10 +2,10 @@ package com.osg.openanimation.repo
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import com.osg.core.ui.components.signin.SignInIdentifier
-import com.osg.core.ui.components.signin.SignInProvider
-import com.osg.core.ui.components.signin.SignInResult
-import com.osg.core.ui.di.SignInProviderFactory
+import com.osg.openanimation.core.ui.components.signin.SignInIdentifier
+import com.osg.openanimation.core.ui.components.signin.SignInProvider
+import com.osg.openanimation.core.ui.components.signin.SignInResult
+import com.osg.openanimation.core.ui.di.SignInProviderFactory
 
 
 class GoogleSignInSim(

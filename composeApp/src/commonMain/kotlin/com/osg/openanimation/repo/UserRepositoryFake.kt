@@ -1,7 +1,7 @@
 package com.osg.openanimation.repo
 
-import com.osg.core.ui.di.UserSessionState
-import com.osg.core.ui.di.UserRepository
+import com.osg.openanimation.core.ui.di.UserSessionState
+import com.osg.openanimation.core.ui.di.UserRepository
 import com.osg.openanimation.core.data.stats.AnimationStats
 import com.osg.openanimation.core.data.use.UserProfile
 import kotlinx.coroutines.ExperimentalCoroutinesApi

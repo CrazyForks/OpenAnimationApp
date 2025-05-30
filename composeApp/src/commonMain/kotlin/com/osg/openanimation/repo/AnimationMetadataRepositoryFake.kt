@@ -3,14 +3,12 @@ package com.osg.openanimation.repo
 import com.osg.core.di.data.FilterQueryType
 import com.osg.core.di.data.GuestQueryType
 import com.osg.core.di.data.SelectedQueryType
-import com.osg.core.ui.home.model.extractSortedTags
-import com.osg.core.ui.home.model.filterSortByText
-import com.osg.core.ui.di.AnimationMetadataRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
 import com.osg.openanimation.core.data.animation.AnimationMetadata
 import com.osg.openanimation.core.data.stats.AnimationStats
-import kotlinx.coroutines.flow.distinctUntilChanged
+import com.osg.openanimation.core.ui.di.AnimationMetadataRepository
+import com.osg.openanimation.core.ui.home.model.extractSortedTags
+import com.osg.openanimation.core.ui.home.model.filterSortByText
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class AnimationMetadataRepositoryFake : AnimationMetadataRepository {
