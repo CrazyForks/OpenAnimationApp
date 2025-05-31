@@ -6,7 +6,7 @@ import com.osg.core.di.data.SelectedQueryType
 import com.osg.openanimation.core.data.animation.AnimationMetadata
 import com.osg.openanimation.core.data.stats.AnimationStats
 import com.osg.openanimation.core.ui.di.AnimationMetadataRepository
-import com.osg.openanimation.core.ui.home.model.extractSortedTags
+import com.osg.openanimation.core.utils.extractSortedTags
 import com.osg.openanimation.core.ui.home.model.filterSortByText
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -32,7 +32,7 @@ class AnimationMetadataRepositoryFake : AnimationMetadataRepository {
         return AnimationDataCollection.metaList
             .sortedByDescending {
                 it.tags.intersect(animationMetadata.tags).size
-            }.take(4)
+            }.take(count)
     }
 
     override fun animationStatsFlow(hash: String): Flow<AnimationStats> = RepositoryFakeStateFlow.statsState.map {
