@@ -8,11 +8,15 @@ import com.osg.openanimation.core.data.stats.AnimationStats
 import com.osg.openanimation.core.ui.di.AnimationMetadataRepository
 import com.osg.openanimation.core.utils.extractSortedTags
 import com.osg.openanimation.core.ui.home.model.filterSortByText
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import kotlinx.coroutines.flow.take
+import kotlin.time.Duration
+import kotlin.time.Duration.Companion.milliseconds
 
-class AnimationMetadataRepositoryFake : AnimationMetadataRepository {
+class AnimationMetadataRepositoryFake(
+    private val networkSimulateDelay: Duration = 1000.milliseconds,
+) : AnimationMetadataRepository {
     private fun fetchTradingAnimationIds(): Set<String> {
         val statsMap = RepositoryFakeStateFlow.statsState.value
         return statsMap.entries.sortedByDescending {it.value.likeCount + it.value.downloadCount }
@@ -30,6 +34,7 @@ class AnimationMetadataRepositoryFake : AnimationMetadataRepository {
         animationMetadata: AnimationMetadata,
         count: Int
     ): List<AnimationMetadata> {
+        delay(networkSimulateDelay)
         return AnimationDataCollection.metaList
             .sortedByDescending {
                 if (it.hash == animationMetadata.hash) {
@@ -48,6 +53,7 @@ class AnimationMetadataRepositoryFake : AnimationMetadataRepository {
         queryType: GuestQueryType,
         limit: Int
     ): List<AnimationMetadata> {
+        delay(networkSimulateDelay)
         return when(queryType){
             is FilterQueryType -> {
                 AnimationDataCollection.entries
