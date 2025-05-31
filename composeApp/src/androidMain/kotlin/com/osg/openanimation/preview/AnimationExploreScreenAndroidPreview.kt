@@ -2,6 +2,7 @@ package com.osg.openanimation.preview
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import com.osg.core.di.data.SelectedQueryType
 import com.osg.openanimation.core.ui.home.domain.AnimationUiData
@@ -24,8 +25,8 @@ fun generateAnimationUiDataList(): List<AnimationUiData> {
     }
 }
 
+@PreviewLightDark
 @PreviewScreenSizes
-@Preview
 @Composable
 fun AnimationExploreScreenAndroidPreview() {
     TrueTheme {

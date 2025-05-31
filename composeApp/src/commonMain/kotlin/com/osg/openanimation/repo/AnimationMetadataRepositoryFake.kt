@@ -10,6 +10,7 @@ import com.osg.openanimation.core.utils.extractSortedTags
 import com.osg.openanimation.core.ui.home.model.filterSortByText
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.take
 
 class AnimationMetadataRepositoryFake : AnimationMetadataRepository {
     private fun fetchTradingAnimationIds(): Set<String> {
@@ -31,7 +32,11 @@ class AnimationMetadataRepositoryFake : AnimationMetadataRepository {
     ): List<AnimationMetadata> {
         return AnimationDataCollection.metaList
             .sortedByDescending {
-                it.tags.intersect(animationMetadata.tags).size
+                if (it.hash == animationMetadata.hash) {
+                    0
+                } else {
+                    it.tags.intersect(animationMetadata.tags).size
+                }
             }.take(count)
     }
 

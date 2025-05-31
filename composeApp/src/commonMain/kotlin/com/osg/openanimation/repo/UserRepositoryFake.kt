@@ -4,6 +4,7 @@ import com.osg.openanimation.core.ui.di.UserSessionState
 import com.osg.openanimation.core.ui.di.UserRepository
 import com.osg.openanimation.core.data.stats.AnimationStats
 import com.osg.openanimation.core.data.use.UserProfile
+import com.osg.openanimation.core.ui.components.signin.SignInResult
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
@@ -73,5 +74,9 @@ class UserRepositoryFake: UserRepository {
 
     override fun onUserSignOut() {
         RepositoryFakeStateFlow.uidState.value = null
+    }
+
+    override fun onRegistered(signInResultState: Result<SignInResult>) {
+
     }
 }
