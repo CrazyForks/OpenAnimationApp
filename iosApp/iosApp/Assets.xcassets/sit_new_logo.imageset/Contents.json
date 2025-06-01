@@ -1,6 +1,7 @@
 {
-  "colors" : [
+  "images" : [
     {
+      "filename" : "sit_full.png",
       "idiom" : "universal"
     }
   ],
