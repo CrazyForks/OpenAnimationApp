@@ -13,9 +13,10 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
+import kotlin.time.Duration.Companion.seconds
 
 class AnimationMetadataRepositoryFake(
-    private val networkSimulateDelay: Duration = 1000.milliseconds,
+    private val networkSimulateDelay: Duration = 1.seconds,
 ) : AnimationMetadataRepository {
     private fun fetchTradingAnimationIds(): Set<String> {
         val statsMap = RepositoryFakeStateFlow.statsState.value
