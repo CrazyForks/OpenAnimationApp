@@ -30,14 +30,13 @@ fun AnimationDetailsPanesAndroidPreview() {
                 animationStats = AnimationStats(
 
                 ),
-                signInState = UserSessionState.SignedOut,
             ),
             onLikeClick = {},
             onDownloadClick = {},
             onTagClick = {},
             relatedAnimations = generateAnimationUiDataList().take(4),
-            onAnimationClicked = {
-            },
+            onRelatedAnimationClicked = {},
+            onDismissSignInDialog = {},
         )
     }
 }
@@ -58,10 +57,10 @@ fun AnimationDetailsViewAndroidPreview() {
                 animationStats = AnimationStats(
 
                 ),
-                signInState = UserSessionState.SignedOut,
             ),
             onLikeClick = {},
             onDownloadClick = {},
+            onDismissSignInDialog = {},
             onTagClick = {},
         )
     }
