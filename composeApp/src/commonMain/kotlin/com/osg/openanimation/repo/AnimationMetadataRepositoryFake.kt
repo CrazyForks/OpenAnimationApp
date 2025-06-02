@@ -1,25 +1,24 @@
 package com.osg.openanimation.repo
 
-import com.osg.core.di.data.FilterQueryType
-import com.osg.core.di.data.GuestQueryType
-import com.osg.core.di.data.SelectedQueryType
 import com.osg.openanimation.core.data.animation.AnimationMetadata
 import com.osg.openanimation.core.data.stats.AnimationStats
 import com.osg.openanimation.core.ui.di.AnimationMetadataRepository
-import com.osg.openanimation.core.utils.extractSortedTags
+import com.osg.openanimation.core.ui.di.data.FilterQueryType
+import com.osg.openanimation.core.ui.di.data.GuestQueryType
+import com.osg.openanimation.core.ui.di.data.SelectedQueryType
 import com.osg.openanimation.core.ui.home.model.filterSortByText
+import com.osg.openanimation.core.utils.extractSortedTags
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlin.time.Duration
-import kotlin.time.Duration.Companion.milliseconds
 import kotlin.time.Duration.Companion.seconds
 
 class AnimationMetadataRepositoryFake(
     private val networkSimulateDelay: Duration = 1.seconds,
 ) : AnimationMetadataRepository {
     private fun fetchTradingAnimationIds(): Set<String> {
-        val statsMap = RepositoryFakeStateFlow.statsState.value
+        val statsMap = FakeRepositoryState.statsState.value
         return statsMap.entries.sortedByDescending {it.value.likeCount + it.value.downloadCount }
             .map { it.key }
             .toSet()
@@ -36,7 +35,7 @@ class AnimationMetadataRepositoryFake(
         count: Int
     ): List<AnimationMetadata> {
         delay(networkSimulateDelay)
-        return AnimationDataCollection.metaList
+        return AnimationDataCollection.metadataList
             .sortedByDescending {
                 if (it.hash == animationMetadata.hash) {
                     0
@@ -46,7 +45,7 @@ class AnimationMetadataRepositoryFake(
             }.take(count)
     }
 
-    override fun animationStatsFlow(hash: String): Flow<AnimationStats> = RepositoryFakeStateFlow.statsState.map {
+    override fun animationStatsFlow(hash: String): Flow<AnimationStats> = FakeRepositoryState.statsState.map {
         it[hash] ?: AnimationStats()
     }
 
@@ -62,13 +61,13 @@ class AnimationMetadataRepositoryFake(
                     .filterSortByText(queryType)
             }
             is SelectedQueryType.ExploreCategory.Explore ->{
-                AnimationDataCollection.metaList
+                AnimationDataCollection.metadataList
             }
 
             SelectedQueryType.ExploreCategory.Trending -> {
                 val trendingIds = fetchTradingAnimationIds()
                 return trendingIds.map {
-                    AnimationDataCollection.byHash(it).metadata
+                    AnimationDataCollection.findByHash(it).metadata
                 }
             }
         }

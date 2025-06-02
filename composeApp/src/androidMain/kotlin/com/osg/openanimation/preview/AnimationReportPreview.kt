@@ -2,7 +2,7 @@ package com.osg.openanimation.preview
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
-import com.osg.core.components.report.AnimationReportContent
+import com.osg.openanimation.core.ui.components.report.AnimationReportContent
 import com.osg.openanimation.core.data.animation.AnimationMetadata
 
 /**

@@ -16,7 +16,7 @@ class GoogleSignInSim(
     @Composable
     override fun SignInDialog(onComplete: (Result<SignInResult>) -> Unit) {
         LaunchedEffect(Unit) {
-            RepositoryFakeStateFlow.uidState.value = result.getOrThrow().uid
+            FakeRepositoryState.uidState.value = result.getOrThrow().uid
             onComplete(
                 result
             )

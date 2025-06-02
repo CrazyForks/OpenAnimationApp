@@ -1,10 +1,10 @@
 package com.osg.openanimation.repo
 
-import com.osg.openanimation.core.ui.di.UserSessionState
-import com.osg.openanimation.core.ui.di.UserRepository
 import com.osg.openanimation.core.data.stats.AnimationStats
 import com.osg.openanimation.core.data.use.UserProfile
 import com.osg.openanimation.core.ui.components.signin.SignInResult
+import com.osg.openanimation.core.ui.di.UserRepository
+import com.osg.openanimation.core.ui.di.UserSessionState
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -13,14 +13,13 @@ import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
-import kotlin.time.Duration.Companion.seconds
 
-class UserRepositoryFake(
+class FakeUserRepo(
     private val networkSimulateDelay: Duration = 300.milliseconds,
 ): UserRepository {
     @OptIn(ExperimentalCoroutinesApi::class)
-    override val profileFlow: Flow<UserSessionState> = RepositoryFakeStateFlow.uidState.flatMapLatest {
-        RepositoryFakeStateFlow.userLikedAnimationsState.map { likedSet ->
+    override val profileFlow: Flow<UserSessionState> = FakeRepositoryState.uidState.flatMapLatest {
+        FakeRepositoryState.userLikedAnimationsState.map { likedSet ->
             if (it == null) {
                 UserSessionState.SignedOut
             } else {
@@ -39,7 +38,7 @@ class UserRepositoryFake(
 
     override suspend fun onUserDownload(hash: String) {
         delay(networkSimulateDelay)
-        RepositoryFakeStateFlow.statsState.update {
+        FakeRepositoryState.statsState.update {
             it.toMutableMap().apply {
                 val currentStats = this[hash]?: AnimationStats()
                 this[hash] = currentStats.copy(
@@ -51,11 +50,11 @@ class UserRepositoryFake(
 
     override suspend fun likeAnimation(hash: String) {
         delay(networkSimulateDelay)
-        RepositoryFakeStateFlow.userLikedAnimationsState.update { likedSet ->
+        FakeRepositoryState.userLikedAnimationsState.update { likedSet ->
             likedSet + hash
         }
 
-        RepositoryFakeStateFlow.statsState.update {
+        FakeRepositoryState.statsState.update {
             it.toMutableMap().apply {
                 val currentStats = this[hash]?: AnimationStats()
                 this[hash] = currentStats.copy(
@@ -67,11 +66,11 @@ class UserRepositoryFake(
 
     override suspend fun dislikeAnimation(hash: String) {
         delay(networkSimulateDelay)
-        RepositoryFakeStateFlow.userLikedAnimationsState.update { likedSet ->
+        FakeRepositoryState.userLikedAnimationsState.update { likedSet ->
             likedSet - hash
         }
 
-        RepositoryFakeStateFlow.statsState.update {
+        FakeRepositoryState.statsState.update {
             it.toMutableMap().apply {
                 val currentStats = this[hash]?: AnimationStats()
                 this[hash] = currentStats.copy(
@@ -82,7 +81,7 @@ class UserRepositoryFake(
     }
 
     override fun onUserSignOut() {
-        RepositoryFakeStateFlow.uidState.value = null
+        FakeRepositoryState.uidState.value = null
     }
 
     override fun onRegistered(signInResultState: Result<SignInResult>) {

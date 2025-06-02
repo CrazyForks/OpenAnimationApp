@@ -6,7 +6,7 @@ import openanimationapp.composeapp.generated.resources.Res
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 
-class AnimationContentLoaderFake(
+class FakeAnimationContentLoader(
     private val networkSimulateDelay: Duration = 500.milliseconds,
 ): AnimationContentLoader {
     override suspend fun fetchAnimationByPath(path: String): ByteArray {

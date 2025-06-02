@@ -1,7 +1,7 @@
 package com.osg.openanimation.repo
 
-import com.osg.openanimation.core.ui.components.lottie.AnimationDataState
 import com.osg.openanimation.core.data.animation.AnimationMetadata
+import com.osg.openanimation.core.ui.components.lottie.AnimationDataState
 import openanimationapp.composeapp.generated.resources.Res
 
 
@@ -153,11 +153,11 @@ enum class AnimationDataCollection(
     );
 
     companion object {
-        fun byHash(hash: String): AnimationDataCollection {
+        fun findByHash(hash: String): AnimationDataCollection {
             return entries.first { it.metadata.hash == hash }
         }
 
-        val metaList: List<AnimationMetadata>
+        val metadataList: List<AnimationMetadata>
             get() = entries.map { it.metadata }
     }
 }
