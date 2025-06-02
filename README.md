@@ -5,7 +5,7 @@
 
   <h1>OpenAnimation</h1>
   <p>
-    Explore and inspire with a collection of beautiful lottie animations built with Kotlin Multiplatform.
+    Explore and get inspired by beautiful Lottie animations powered by Kotlin Multiplatform.
   <div>
     <div>
       <a href="composeApp/src/androidMain"><img src="https://img.shields.io/badge/Platform-Android-brightgreen.svg?logo=android" alt="Badge Android" /></a>
@@ -36,7 +36,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Roadmap
 
-- Pipeline for new animations
-- Enhanced animation features
-
+🚧 Color picker
+🚧 Optimizations
+🚧 Community animations
 
