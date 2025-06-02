@@ -1,4 +1,5 @@
 
+import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -34,7 +35,9 @@ kotlin {
             isStatic = true
         }
     }
+    jvm("desktop")
     sourceSets {
+        val desktopMain by getting
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -56,6 +59,10 @@ kotlin {
                 implementation(project.dependencies.platform(libs.koin.bom))
                 implementation(libs.koin.core)
             }
+        }
+        desktopMain.dependencies {
+            implementation(compose.desktop.currentOs)
+            implementation(libs.kotlinx.coroutines.swing)
         }
     }
 }
@@ -96,4 +103,16 @@ afterEvaluate {
     // to avoid kotlinStorePackageLock failing
     val kotlinUpgradePackageLock = tasks.findByPath("::kotlinUpgradePackageLock")!!
     tasks.findByPath("::kotlinNpmInstall")!!.finalizedBy(kotlinUpgradePackageLock)
+}
+
+compose.desktop {
+    application {
+        mainClass = "org.osg.openanimation.MainKt"
+
+        nativeDistributions {
+            targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            packageName = "org.osg.openanimation"
+            packageVersion = "1.0.0"
+        }
+    }
 }
