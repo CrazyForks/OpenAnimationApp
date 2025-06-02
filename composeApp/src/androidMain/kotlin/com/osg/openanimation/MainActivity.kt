@@ -17,6 +17,7 @@ class MainActivity : ComponentActivity() {
                 androidActivityModule
             )
         )
+
         setContent {
             basePreviewApp.AppEntry()
         }
