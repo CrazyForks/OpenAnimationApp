@@ -23,16 +23,15 @@ import com.osg.openanimation.repo.AnimationDataCollection
 import com.osg.openanimation.repo.fromLocaleStorage
 import kotlinx.coroutines.delay
 
-@Preview
+@Preview(showBackground = true)
 @Composable
 fun AnimationDetailsPanesAndroidShimmerPreview() {
     var isClicked by remember { mutableStateOf(false) }
-    var isLike by remember { mutableStateOf(false) }
+    var isLike by remember { mutableStateOf(true) }
     TrueTheme{
         val detailsScreenState = DetailsScreenStates.Success(
             detailsUiPane = DetailsUiPane(
                 isLiked = isLike,
-                isLikeTransition =  isClicked,
                 animationUiData = generateAnimationUiDataList().last(),
                 animationStats = AnimationStats(
                     downloadCount = 5,
@@ -45,7 +44,9 @@ fun AnimationDetailsPanesAndroidShimmerPreview() {
             modifier = Modifier.fillMaxSize().statusBarsPadding(),
             detailsUiState = detailsScreenState,
             onLikeClick = {
-                isClicked = !isClicked
+                isClicked.not().also {
+                    isClicked = it
+                }
             },
             onDownloadClick = {},
             onTagClick = {},
@@ -81,7 +82,9 @@ fun AnimationDetailsPanesAndroidPreview() {
         AnimationDetailsPanes(
             modifier = Modifier.fillMaxSize(),
             detailsUiState = detailsScreenState,
-            onLikeClick = {},
+            onLikeClick = {
+                true
+            },
             onDownloadClick = {},
             onTagClick = {},
             onRelatedAnimationClicked = {},
