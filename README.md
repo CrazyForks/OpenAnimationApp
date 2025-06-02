@@ -15,7 +15,7 @@
     </div>
   </div>
     <br/>
-<img src="readme_images/multiplatform_open-animation.png" alt="OpenAnimation Multiplatform" width="600" height="300" />
+<img src="readme_images/multiplatform_open-animation.png" alt="OpenAnimation Multiplatform"/>
   <br>
 </div>
 
