@@ -24,6 +24,8 @@
     <br/>
 <img src="readme_images/multiplatform_open-animation.png" alt="OpenAnimation Multiplatform"/>
   <br>
+  <img src="readme_images/openanimation.gif" alt="OpenAnimation Demo"/>
+  <br>
 </div>
 
 
@@ -43,6 +45,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## TODO
 
-🚧 Color picker<br>
-🚧 Optimizations<br>
+🚧 Animation Color scheme picker<br>
+🚧 Optimization<br>
+🚧 Rendering performance information<br>
 🚧 Community animations<br>
