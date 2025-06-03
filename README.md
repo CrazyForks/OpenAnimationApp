@@ -4,8 +4,15 @@
   <br>
 
   <h1>OpenAnimation</h1>
+
   <p>
-    Explore and get inspired by beautiful Lottie animations powered by Kotlin Multiplatform.
+    <strong>✨ Check out the live web version: <a href="https://openanimation.web.app">openanimation.web.app</a> ✨</strong>
+  </p>
+
+  <p>
+    Discover and draw inspiration from a curated collection of beautiful Lottie animations, all powered by Kotlin Multiplatform.
+  </p>
+
   <div>
     <div>
       <a href="composeApp/src/androidMain"><img src="https://img.shields.io/badge/Platform-Android-brightgreen.svg?logo=android" alt="Badge Android" /></a>
@@ -21,8 +28,8 @@
 
 
 ## 🙏 Libraries Used 
-- [compottie](https://github.com/alexzhirkevich/compottie)
-- [koin](https://github.com/InsertKoinIO/koin)
+- [Compottie](https://github.com/alexzhirkevich/compottie)
+- [Koin](https://github.com/InsertKoinIO/koin)
 - [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html)
 
 
@@ -34,9 +41,8 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## Roadmap
+## TODO
 
-🚧 Color picker
-🚧 Optimizations
-🚧 Community animations
-
+🚧 Color picker<br>
+🚧 Optimizations<br>
+🚧 Community animations<br>
