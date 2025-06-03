@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="readme_images/app-icon.png" alt="OpenAnimation Logo" width="200" height="200" />
+  <img src="readme_images/app-icon.png" alt="OpenAnimation Logo" height="200" />
 
   <br>
 
@@ -43,9 +43,10 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 This project is licensed under the MIT License - see the LICENSE file for details.
 
-## TODO
+## 🚀 Roadmap & TODO
 
-🚧 Animation Color scheme picker<br>
-🚧 Optimization<br>
-🚧 Rendering performance information<br>
-🚧 Community animations<br>
+### Features
+- [ ] 🎨 **Animation Color Scheme Picker** - Add ability for users to customize animation color palettes
+- [ ] 👥 **Community Animations** - Implement support for user-submitted animations with voting system
+- [ ] ⚡ **Rendering Optimization** - Improve animation playback performance across platforms
+- [ ] 📊 **Performance Metrics** - Add analytics for rendering times and resource usage
