@@ -17,7 +17,7 @@
     <div>
       <a href="composeApp/src/androidMain"><img src="https://img.shields.io/badge/Platform-Android-brightgreen.svg?logo=android" alt="Badge Android" /></a>
       <a href="composeApp/src/iosMain"><img src="https://img.shields.io/badge/Platform-iOS%20%2F%20macOS-lightgrey.svg?logo=apple" alt="Badge iOS" /></a>
-      <a href="composeApp/src/src/desktopMain"><img src="https://img.shields.io/badge/Platform-JVM-8A2BE2.svg?logo=openjdk" alt="Badge JVM" /></a>
+      <a href="composeApp/src/desktopMain"><img src="https://img.shields.io/badge/Platform-JVM-8A2BE2.svg?logo=openjdk" alt="Badge JVM" /></a>
       <a href="composeApp/src/jsMain"><img src="https://img.shields.io/badge/Platform-WASM%20%2F%20JS-yellow.svg?logo=javascript" alt="Badge JS" /></a>
     </div>
   </div>
