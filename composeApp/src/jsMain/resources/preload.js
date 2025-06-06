@@ -1,38 +1,92 @@
 // Function to dynamically load scripts
-function loadScript(src, onProgress) {
+function loadScript(src, onProgress, expectedSize) {
     return new Promise((resolve, reject) => {
-        // For scripts we can't directly track download progress with vanilla JS
-        // So we'll simulate progress for better UX
-        const simulateProgress = () => {
-            let progress = 0;
-            const interval = setInterval(() => {
-                progress += Math.random() * 5;
-                if (progress > 95) {
-                    progress = 95; // Cap at 95% until actual load completes
-                    clearInterval(interval);
-                }
-                if (onProgress) onProgress(Math.min(Math.round(progress), 95));
-            }, 200);
-            return interval;
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', src, true);
+
+        xhr.onprogress = (event) => {
+            if (expectedSize && expectedSize > 0 && event.loaded) {
+                const percentComplete = (event.loaded / expectedSize) * 100;
+                if (onProgress) onProgress(Math.min(Math.round(percentComplete), 100));
+            } else if (event.lengthComputable && event.total > 0) {
+                const percentComplete = (event.loaded / event.total) * 100;
+                if (onProgress) onProgress(Math.round(percentComplete));
+            } else {
+                if (onProgress) onProgress(null);
+            }
         };
 
-        const progressInterval = simulateProgress();
+        xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                const script = document.createElement('script');
+                script.type = 'application/javascript';
+                script.textContent = xhr.responseText;
+                document.body.appendChild(script);
+                if (onProgress) onProgress(100); // Ensure 100% is reported
+                resolve();
+            } else {
+                reject(new Error(`Failed to load script: ${src}. Status: ${xhr.status}`));
+            }
+        };
 
-        const script = document.createElement('script');
-        script.src = src;
-        script.type = 'application/javascript';
-        script.onload = () => {
-            clearInterval(progressInterval);
-            if (onProgress) onProgress(100);
-            setTimeout(resolve, 200); // Small delay to show 100%
+        xhr.onerror = () => {
+            reject(new Error(`Failed to load script: ${src}. Network error.`));
         };
-        script.onerror = () => {
-            clearInterval(progressInterval);
-            reject(new Error(`Failed to load script: ${src}`));
-        };
-        document.body.appendChild(script);
+
+        xhr.send();
     });
 }
+
+function getFileSizeOrDefault(url, defaultSize) {
+    return new Promise((resolve) => {
+        const xhr = new XMLHttpRequest();
+        xhr.open('HEAD', url, true);
+        xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                const contentLength = xhr.getResponseHeader('Content-Length');
+                if (contentLength) {
+                    resolve(parseInt(contentLength, 10));
+                } else {
+                    console.warn(`Content-Length header not found for ${url}, using default size.`);
+                    resolve(defaultSize);
+                }
+            } else {
+                console.warn(`HEAD request failed for ${url} (status: ${xhr.status}), using default size.`);
+                resolve(defaultSize);
+            }
+        };
+        xhr.onerror = () => {
+            console.warn(`Network error during HEAD request for ${url}, using default size.`);
+            resolve(defaultSize);
+        };
+        xhr.send();
+    });
+}
+
+async function loadScriptAndUpdateOverallProgress(
+    scriptSrc,
+    scriptSize,
+    totalBytesAlreadyLoaded,
+    totalBytesToLoadOverall,
+    loadingMessage,
+    updateStatusFn
+) {
+    return loadScript(scriptSrc, (individualProgressPercentage) => {
+        let currentFileBytesLoaded = 0;
+        if (individualProgressPercentage !== null && scriptSize > 0) {
+            currentFileBytesLoaded = (individualProgressPercentage / 100) * scriptSize;
+        }
+
+        let overallProgressPercentage = 0;
+        if (totalBytesToLoadOverall > 0) {
+            overallProgressPercentage = ((totalBytesAlreadyLoaded + currentFileBytesLoaded) / totalBytesToLoadOverall) * 100;
+        } else if (individualProgressPercentage !== null) {
+            overallProgressPercentage = individualProgressPercentage;
+        }
+        updateStatusFn(loadingMessage, Math.min(Math.round(overallProgressPercentage), 100));
+    }, scriptSize);
+}
+
 
 // Update loading status and progress
 function updateLoadingStatus(message, progress = null) {
@@ -80,35 +134,57 @@ document.addEventListener('DOMContentLoaded', async () => {
         const splash = document.getElementById('splash');
         splash.appendChild(loadingContainer);
 
-        // Track overall progress
-        const totalSteps = 2; // skiko.js and stayintap.js
-        let completedSteps = 0;
-        let currentProgress = 0;
+        const FALLBACK_SKIKO_JS_SIZE_BYTES = 1024 * 1024; // 1MB
+        const FALLBACK_OPEN_ANIMATION_JS_SIZE_BYTES = 5 * 1024 * 1024; // 5MB
 
-        // Load skiko.js first
-        updateLoadingStatus('Loading Skiko framework...', 0);
-        await loadScript('skiko.js', (progress) => {
-            currentProgress = (completedSteps * 100 + progress) / totalSteps;
-            updateLoadingStatus('Loading Skiko framework...', Math.round(currentProgress));
-        });
+        updateLoadingStatus('Determining file sizes...', 0);
 
-        completedSteps++;
+        const skikoJsSize = await getFileSizeOrDefault('skiko.js', FALLBACK_SKIKO_JS_SIZE_BYTES);
+        const openAnimationJsSize = await getFileSizeOrDefault('openAnimation.js', FALLBACK_OPEN_ANIMATION_JS_SIZE_BYTES);
 
-        // Then load application script
-        updateLoadingStatus('Loading application...', 50);
-        await loadScript('openAnimation.js', (progress) => {
-            currentProgress = (completedSteps * 100 + progress) / totalSteps;
-            updateLoadingStatus('Loading application...', Math.round(currentProgress));
-        });
+        const totalBytesToLoad = skikoJsSize + openAnimationJsSize;
 
-        // App is ready when both scripts are loaded
+        if (totalBytesToLoad === 0) {
+            console.warn('Total file size is zero. Progress reporting will be inaccurate or step-based.');
+        }
+
+        let totalBytesLoadedSoFar = 0;
+
+        // Load skiko.js
+        const skikoLoadingMsg = 'Loading Skiko framework...';
+        updateLoadingStatus(skikoLoadingMsg, 0);
+        await loadScriptAndUpdateOverallProgress(
+            'skiko.js',
+            skikoJsSize,
+            totalBytesLoadedSoFar,
+            totalBytesToLoad,
+            skikoLoadingMsg,
+            updateLoadingStatus
+        );
+        totalBytesLoadedSoFar += skikoJsSize;
+        // Ensure this step's progress is fully accounted for in the overall calculation for the next step's base
+        let currentOverallProgress = totalBytesToLoad > 0 ? (totalBytesLoadedSoFar / totalBytesToLoad) * 100 : 50;
+        updateLoadingStatus('Skiko framework loaded.', Math.round(currentOverallProgress));
+
+        // Load application script
+        const appLoadingMsg = 'Loading application...';
+        updateLoadingStatus(appLoadingMsg, Math.round(currentOverallProgress));
+        await loadScriptAndUpdateOverallProgress(
+            'openAnimation.js',
+            openAnimationJsSize,
+            totalBytesLoadedSoFar,
+            totalBytesToLoad,
+            appLoadingMsg,
+            updateLoadingStatus
+        );
+        totalBytesLoadedSoFar += openAnimationJsSize;
+        currentOverallProgress = totalBytesToLoad > 0 ? (totalBytesLoadedSoFar / totalBytesToLoad) * 100 : 100;
+
+        updateLoadingStatus('Application loaded.', Math.round(currentOverallProgress));
         updateLoadingStatus('Starting application...', 100);
-
-        // The app's initialization will hide the splash screen when ready
-        // If your app needs more time to initialize, you might want to expose a function to call hideLoadingScreen()
 
     } catch (error) {
         console.error('Failed to load application:', error);
-        updateLoadingStatus('Failed to load application. Please try refreshing the page.');
+        updateLoadingStatus('Failed to load application. Please try refreshing the page.', null); // No progress % on error
     }
 });
