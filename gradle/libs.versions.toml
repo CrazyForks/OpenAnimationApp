@@ -1,21 +1,21 @@
 [versions]
-agp = "8.9.3"
-kotlin = "2.1.21"
-android-compileSdk = "35"
+agp = "8.10.1"
+kotlin = "2.2.0"
 android-minSdk = "35"
-android-targetSdk = "35"
+android-compileSdk = "35"
+android-targetSdk = "36"
 adaptive = "1.1.1"
-compose-multiplatform = "1.8.1"
-androidx-lifecycle = "2.9.0"
-androidx-navigation = "2.9.0-beta02"
+compose-multiplatform = "1.8.2"
+androidx-lifecycle = "2.9.1"
+androidx-navigation = "2.9.0-beta03"
 androidx-activityCompose = "1.10.1"
-kotlinx-datetime = "0.6.2"
-kotlinxSerializationCore = "1.8.1"
-koinBom = "4.1.0-RC1"
+kotlinx-datetime = "0.7.1"
+kotlinxSerializationCore = "1.9.0"
+koinBom = "4.1.0"
 materialIconsCore = "1.7.3"
 coroutines = "1.10.2"
-
-compottie = "2.0.0-rc04"
+atomicfu="0.29.0"
+okio = "3.16.0"
 
 [libraries]
 adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "adaptive" }
@@ -38,8 +38,9 @@ material-icons-core = { module = "org.jetbrains.compose.material:material-icons-
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-coroutines-swing = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "coroutines" }
 
-
-compottie = { module = "io.github.alexzhirkevich:compottie", version.ref = "compottie" }
+okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
+okio-fakefilesystem = { module = "com.squareup.okio:okio-fakefilesystem", version.ref = "okio" }
+atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomicfu" }
 
 
 [plugins]

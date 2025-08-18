@@ -9,3 +9,13 @@ plugins {
     alias(libs.plugins.kotlinMultiplatform) apply false
     idea
 }
+
+subprojects {
+    plugins.withId("org.jetbrains.kotlin.multiplatform") {
+        extensions.configure<org.jetbrains.kotlin.gradle.dsl.KotlinMultiplatformExtension> {
+            sourceSets.all {
+                languageSettings.optIn("kotlin.time.ExperimentalTime")
+            }
+        }
+    }
+}

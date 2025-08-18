@@ -1,3 +1,6 @@
 [submodule "core"]
 	path = core
 	url = https://github.com/orispok/OpenAnimationCore.git
+[submodule "compottie"]
+	path = compottie
+	url = https://github.com/orispok/compottie.git

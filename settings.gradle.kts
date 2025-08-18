@@ -30,4 +30,5 @@ dependencyResolutionManagement {
 
 include("core:data")
 include("core:ui")
+include(":compottie:compottie")
 include(":composeApp")
