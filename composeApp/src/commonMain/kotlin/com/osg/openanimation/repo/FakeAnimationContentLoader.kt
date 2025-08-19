@@ -9,8 +9,8 @@ import kotlin.time.Duration.Companion.milliseconds
 class FakeAnimationContentLoader(
     private val networkSimulateDelay: Duration = 500.milliseconds,
 ): AnimationContentLoader {
-    override suspend fun fetchAnimationByPath(path: String): ByteArray {
+    override suspend fun fetchAnimationByPath(path: String): String {
         delay(networkSimulateDelay)
-        return Res.readBytes("files/$path")
+        return Res.readBytes("files/$path").decodeToString()
     }
 }

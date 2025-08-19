@@ -1,9 +1,11 @@
 package com.osg.openanimation.preview.color
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -24,22 +26,25 @@ fun ColorsEditViewPreview() {
         mutableStateOf<String?>(null)
     }
 
-    Box(
+    Scaffold(
         modifier = androidx.compose.ui.Modifier
             .background(color = androidx.compose.ui.graphics.Color.White)
             .fillMaxWidth()
             .height(400.dp)
-    ) {
-        lottieRaw?.let {
+    ){
+        Column {
             ColorsEditView(
-                lottieRaw = it
+                modifier = androidx.compose.ui.Modifier.padding(it),
+                lottieRaw = lottieRaw?: return@Column,
+                hash = AnimationDataCollection.CHECKMARK.metadata.hash
             )
         }
+
     }
 
 
     LaunchedEffect(Unit) {
-        lottieRaw = AnimationDataCollection.CHECKMARK.fromLocaleStorage().fetchAnimation().decodeToString()
+        lottieRaw = AnimationDataCollection.CHECKMARK.fromLocaleStorage()
     }
 
 }

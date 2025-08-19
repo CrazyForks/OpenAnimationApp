@@ -1,7 +1,6 @@
 package com.osg.openanimation.repo
 
 import com.osg.openanimation.core.data.animation.AnimationMetadata
-import com.osg.openanimation.core.ui.components.lottie.AnimationDataState
 import openanimationapp.composeapp.generated.resources.Res
 
 
@@ -163,8 +162,6 @@ enum class AnimationDataCollection(
 }
 
 
-fun AnimationDataCollection.fromLocaleStorage(): AnimationDataState {
-    return AnimationDataState(this.metadata.hash) {
-        Res.readBytes("files/${metadata.localFileName}")
-    }
+suspend fun AnimationDataCollection.fromLocaleStorage(): String {
+    return Res.readBytes("files/${metadata.localFileName}").decodeToString()
 }
