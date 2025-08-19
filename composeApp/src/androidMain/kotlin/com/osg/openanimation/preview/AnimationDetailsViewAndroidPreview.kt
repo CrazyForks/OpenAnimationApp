@@ -15,8 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import com.osg.openanimation.core.data.stats.AnimationStats
-import com.osg.openanimation.core.ui.color.ColorsEditHandler
-import com.osg.openanimation.core.ui.color.ColorsEditPalette
+import com.osg.openanimation.core.ui.color.model.ColorsEditHandler
+import com.osg.openanimation.core.ui.color.model.ColorsEditPalette
 import com.osg.openanimation.core.ui.components.lottie.AnimationDataState
 import com.osg.openanimation.core.ui.details.AnimationDetailsPanes
 import com.osg.openanimation.core.ui.details.DetailsScreenStates

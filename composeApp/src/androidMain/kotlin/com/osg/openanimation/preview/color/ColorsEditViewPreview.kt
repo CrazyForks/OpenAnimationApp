@@ -8,12 +8,15 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.osg.openanimation.core.ui.color.ColorsEditView
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.osg.openanimation.core.ui.color.ui.ColorPaletteOptionsView
 import com.osg.openanimation.repo.AnimationDataCollection
 import com.osg.openanimation.repo.fromLocaleStorage
 import org.jetbrains.compose.ui.tooling.preview.Preview
@@ -47,4 +50,21 @@ fun ColorsEditViewPreview() {
         lottieRaw = AnimationDataCollection.CHECKMARK.fromLocaleStorage()
     }
 
+}
+
+@Composable
+fun ColorsEditView(
+    modifier: Modifier = Modifier,
+    lottieRaw: String,
+    hash: String,
+) {
+
+    val viewModel = viewModel { ColorsEditViewModel(lottieRaw, hash) }
+    val uiState by viewModel.uiState.collectAsState()
+    ColorPaletteOptionsView(
+        modifier = modifier,
+        expanded = uiState.expanded,
+        transformOptions = uiState.options,
+        onPalletSelect = viewModel::onSelectColorTransformOption,
+    )
 }
