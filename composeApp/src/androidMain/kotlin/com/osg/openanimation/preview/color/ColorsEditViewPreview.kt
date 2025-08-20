@@ -7,64 +7,52 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.collectAsState
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 import com.osg.openanimation.core.ui.color.ui.ColorPaletteOptionsView
-import com.osg.openanimation.repo.AnimationDataCollection
-import com.osg.openanimation.repo.fromLocaleStorage
 import org.jetbrains.compose.ui.tooling.preview.Preview
 
 @Preview
 @Composable
 fun ColorsEditViewPreview() {
-
-    var lottieRaw by remember {
-        mutableStateOf<String?>(null)
-    }
-
     Scaffold(
-        modifier = androidx.compose.ui.Modifier
-            .background(color = androidx.compose.ui.graphics.Color.White)
+        modifier = Modifier
+            .background(color = Color.White)
             .fillMaxWidth()
             .height(400.dp)
     ){
         Column {
             ColorsEditView(
-                modifier = androidx.compose.ui.Modifier.padding(it),
-                lottieRaw = lottieRaw?: return@Column,
-                hash = AnimationDataCollection.CHECKMARK.metadata.hash
+                modifier = Modifier.padding(it),
             )
         }
 
     }
-
-
-    LaunchedEffect(Unit) {
-        lottieRaw = AnimationDataCollection.CHECKMARK.fromLocaleStorage()
-    }
-
 }
 
 @Composable
 fun ColorsEditView(
     modifier: Modifier = Modifier,
-    lottieRaw: String,
-    hash: String,
 ) {
 
-    val viewModel = viewModel { ColorsEditViewModel(lottieRaw, hash) }
-    val uiState by viewModel.uiState.collectAsState()
     ColorPaletteOptionsView(
         modifier = modifier,
-        expanded = uiState.expanded,
-        transformOptions = uiState.options,
-        onPalletSelect = viewModel::onSelectColorTransformOption,
+        transformOptions = listOf(
+            listOf(
+                Color(0xFF000000),
+                Color(0xFFFFFFFF),
+                Color(0xFFFF0000),
+                Color(0xFF00FF00),
+            ),
+            listOf(
+                Color(0xffff9a9e),
+                Color(0xFFFFFFFF),
+                Color(0xff0059ff),
+                Color(0xff238d91),
+            )
+        ),
+        onPalletSelect = {},
+        selectedIndex = 0,
     )
 }

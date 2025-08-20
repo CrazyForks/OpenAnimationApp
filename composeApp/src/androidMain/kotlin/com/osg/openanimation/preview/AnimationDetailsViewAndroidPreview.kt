@@ -54,7 +54,6 @@ fun AnimationDetailsPanesAndroidShimmerPreview() {
                                 Color(0xFF00FF00),
                             )
                         ),
-                        expanded = false,
                     ),
                 ),
                 animationStats = AnimationStats(
@@ -111,7 +110,6 @@ fun AnimationDetailsPanesAndroidPreview() {
                     editableAnimation = s.copy(
                         processedJsonState = AnimationDataState.Processing,
                         options = s.options + s.options,
-                        expanded = true,
                     ),
                 ),
                 animationStats = AnimationStats(
