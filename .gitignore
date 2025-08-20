@@ -17,3 +17,4 @@ captures
 !*.xcworkspace/contents.xcworkspacedata
 **/xcshareddata/WorkspaceSettings.xcsettings
 /kotlin-js-store/package-lock.json
+/kotlin-js-store/wasm/package-lock.json

@@ -19,8 +19,8 @@ import com.osg.openanimation.core.ui.color.model.ColorsEditHandler
 import com.osg.openanimation.core.ui.color.model.ColorsEditPalette
 import com.osg.openanimation.core.ui.components.lottie.AnimationDataState
 import com.osg.openanimation.core.ui.details.AnimationDetailsPanes
-import com.osg.openanimation.core.ui.details.DetailsScreenStates
-import com.osg.openanimation.core.ui.details.DetailsUiPane
+import com.osg.openanimation.core.ui.details.model.ds.DetailsScreenStates
+import com.osg.openanimation.core.ui.details.model.ds.DetailsUiPane
 import com.osg.openanimation.core.ui.home.domain.ColorPaletteWithMetadata
 import com.osg.openanimation.core.ui.theme.TrueTheme
 import kotlinx.coroutines.delay
