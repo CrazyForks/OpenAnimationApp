@@ -1,7 +1,18 @@
 package com.osg.openanimation.repo
 
 import com.osg.openanimation.core.data.stats.AnimationStats
-import com.osg.openanimation.repo.AnimationDataCollection.*
+import com.osg.openanimation.core.data.upload.UploadedAnimation
+import com.osg.openanimation.repo.AnimationDataCollection.AIRPLANE
+import com.osg.openanimation.repo.AnimationDataCollection.CHECKMARK
+import com.osg.openanimation.repo.AnimationDataCollection.DAY_NIGHT_CYCLE
+import com.osg.openanimation.repo.AnimationDataCollection.HAPPY_DOG
+import com.osg.openanimation.repo.AnimationDataCollection.ORBITING_DOTS
+import com.osg.openanimation.repo.AnimationDataCollection.PARTLY_CLOUDY_SUN
+import com.osg.openanimation.repo.AnimationDataCollection.SIMPLE_JUMP
+import com.osg.openanimation.repo.AnimationDataCollection.SURPRISED_FACE
+import com.osg.openanimation.repo.AnimationDataCollection.SYNC_DOTS
+import com.osg.openanimation.repo.AnimationDataCollection.WALKING_DOG
+import com.osg.openanimation.repo.AnimationDataCollection.entries
 import kotlinx.coroutines.flow.MutableStateFlow
 
 const val TEST_USER_UID_PREFIX = "testUserUidPrefix"
@@ -11,6 +22,8 @@ object FakeRepositoryState{
     val statsState: MutableStateFlow<Map<String, AnimationStats>> = MutableStateFlow(entries.associate {
         it.metadata.hash to it.initialStats
     })
+
+    val uploadedAnimations = MutableStateFlow<Map<String, UploadedAnimation>>(emptyMap())
 
     val userLikedAnimationsState: MutableStateFlow<Set<String>> = MutableStateFlow(emptySet())
 }

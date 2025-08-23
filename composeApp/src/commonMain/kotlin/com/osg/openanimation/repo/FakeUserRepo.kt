@@ -1,7 +1,8 @@
 package com.osg.openanimation.repo
 
 import com.osg.openanimation.core.data.stats.AnimationStats
-import com.osg.openanimation.core.data.use.UserProfile
+import com.osg.openanimation.core.data.upload.UploadedAnimation
+import com.osg.openanimation.core.data.user.UserProfile
 import com.osg.openanimation.core.ui.components.signin.SignInResult
 import com.osg.openanimation.core.ui.di.UserRepository
 import com.osg.openanimation.core.ui.di.UserSessionState
@@ -11,6 +12,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
+import kotlin.time.Clock
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 
@@ -77,6 +79,26 @@ class FakeUserRepo(
                     likeCount = currentStats.likeCount - 1
                 )
             }
+        }
+    }
+
+    override suspend fun uploadAnimation(
+        title: String,
+        description: String,
+        tags: List<String>,
+        animationData: ByteArray
+    ) {
+        val timeStamp = Clock.System.now().toEpochMilliseconds()
+        val animationId = "uid_$timeStamp"
+        FakeAnimationStorage.storeAnimation(animationId, animationData.decodeToString())
+        FakeRepositoryState.uploadedAnimations.update { currentMap ->
+            currentMap + (animationId to UploadedAnimation(
+                animationId = animationId,
+                uploadTimestamp = timeStamp,
+                title = title,
+                description = description,
+                tags = tags
+            ))
         }
     }
 
