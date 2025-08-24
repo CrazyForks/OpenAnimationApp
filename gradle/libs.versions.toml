@@ -16,6 +16,7 @@ materialIconsCore = "1.7.3"
 coroutines = "1.10.2"
 atomicfu="0.29.0"
 okio = "3.16.0"
+keight = "0.0.02"
 
 [libraries]
 adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "adaptive" }
@@ -42,6 +43,7 @@ okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 okio-fakefilesystem = { module = "com.squareup.okio:okio-fakefilesystem", version.ref = "okio" }
 atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomicfu" }
 
+keight = { module = "io.github.alexzhirkevich:keight", version.ref = "keight" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
