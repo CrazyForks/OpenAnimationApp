@@ -9,7 +9,7 @@ import androidx.compose.ui.tooling.preview.PreviewLightDark
 import androidx.compose.ui.tooling.preview.PreviewScreenSizes
 import com.osg.openanimation.core.data.animation.AnimationCategory
 import com.osg.openanimation.core.ui.components.lottie.AnimationDataState
-import com.osg.openanimation.core.ui.di.data.SelectedQueryType
+import com.osg.openanimation.core.ui.graph.SelectedQueryType
 import com.osg.openanimation.core.ui.home.domain.AnimationUiData
 import com.osg.openanimation.core.ui.home.domain.ExploreScreenStates
 import com.osg.openanimation.core.ui.home.ui.AnimationGrid

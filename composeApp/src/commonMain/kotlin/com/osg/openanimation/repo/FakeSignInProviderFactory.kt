@@ -5,7 +5,7 @@ import androidx.compose.runtime.LaunchedEffect
 import com.osg.openanimation.core.ui.components.signin.SignInIdentifier
 import com.osg.openanimation.core.ui.components.signin.SignInProvider
 import com.osg.openanimation.core.ui.components.signin.SignInResult
-import com.osg.openanimation.core.ui.di.SignInProviderFactory
+import com.osg.openanimation.core.ui.di.domain.SignInProviderFactory
 
 
 class GoogleSignInSim(

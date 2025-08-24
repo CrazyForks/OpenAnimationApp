@@ -1,11 +1,12 @@
 package com.osg.openanimation
 
 import com.osg.openanimation.core.ui.BaseApp
-import com.osg.openanimation.repo.FakeAnimationContentLoader
 import com.osg.openanimation.repo.AnimationMetadataRepositoryFake
-import com.osg.openanimation.repo.SignInProviderSim
+import com.osg.openanimation.repo.FakeAnimationContentLoader
+import com.osg.openanimation.repo.FakeAnimationInitialUpload
 import com.osg.openanimation.repo.FakeReportSubmissionService
 import com.osg.openanimation.repo.FakeUserRepo
+import com.osg.openanimation.repo.SignInProviderSim
 import org.koin.core.module.Module
 
 fun getBaseApp(
@@ -28,6 +29,10 @@ fun getBaseApp(
             FakeReportSubmissionService()
         },
         baseUrl = "http://localhost:8080",
-        platformModules = platformModules
+        platformModules = platformModules,
+        animationInitialUpload = {
+            FakeAnimationInitialUpload()
+        }
+
     )
 }

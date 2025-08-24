@@ -1,7 +1,7 @@
 package com.osg.openanimation.repo
 
 import com.osg.openanimation.core.data.report.ReportSubmission
-import com.osg.openanimation.core.ui.di.ReportSubmissionService
+import com.osg.openanimation.core.ui.di.domain.ReportSubmissionService
 import kotlinx.coroutines.delay
 import kotlin.time.Duration.Companion.milliseconds
 

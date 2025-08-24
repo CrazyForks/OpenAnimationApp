@@ -2,10 +2,10 @@ package com.osg.openanimation.repo
 
 import com.osg.openanimation.core.data.animation.AnimationMetadata
 import com.osg.openanimation.core.data.stats.AnimationStats
-import com.osg.openanimation.core.ui.di.AnimationMetadataRepository
-import com.osg.openanimation.core.ui.di.data.FilterQueryType
-import com.osg.openanimation.core.ui.di.data.GuestQueryType
-import com.osg.openanimation.core.ui.di.data.SelectedQueryType
+import com.osg.openanimation.core.ui.di.domain.AnimationMetadataRepository
+import com.osg.openanimation.core.ui.graph.FilterQueryType
+import com.osg.openanimation.core.ui.graph.GuestQueryType
+import com.osg.openanimation.core.ui.graph.SelectedQueryType
 import com.osg.openanimation.core.ui.home.model.filterSortByText
 import com.osg.openanimation.core.utils.extractSortedTags
 import kotlinx.coroutines.delay
