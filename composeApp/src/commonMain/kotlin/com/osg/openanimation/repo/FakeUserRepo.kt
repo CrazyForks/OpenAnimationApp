@@ -1,7 +1,7 @@
 package com.osg.openanimation.repo
 
 import com.osg.openanimation.core.data.stats.AnimationStats
-import com.osg.openanimation.core.data.upload.UploadedAnimation
+import com.osg.openanimation.core.data.upload.UploadedAnimationMeta
 import com.osg.openanimation.core.data.user.UserProfile
 import com.osg.openanimation.core.ui.components.signin.SignInResult
 import com.osg.openanimation.core.ui.di.UserRepository
@@ -91,11 +91,11 @@ class FakeUserRepo(
         val timeStamp = Clock.System.now().toEpochMilliseconds()
         val animationId = "uid_$timeStamp"
         FakeAnimationStorage.storeAnimation(animationId, animationData.decodeToString())
-        FakeRepositoryState.uploadedAnimations.update { currentMap ->
-            currentMap + (animationId to UploadedAnimation(
+        FakeRepositoryState.uploadedAnimationsMeta.update { currentMap ->
+            currentMap + (animationId to UploadedAnimationMeta(
                 animationId = animationId,
                 uploadTimestamp = timeStamp,
-                title = title,
+                name = title,
                 description = description,
                 tags = tags
             ))

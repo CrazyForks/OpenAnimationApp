@@ -1,7 +1,7 @@
 package com.osg.openanimation.repo
 
 import com.osg.openanimation.core.data.stats.AnimationStats
-import com.osg.openanimation.core.data.upload.UploadedAnimation
+import com.osg.openanimation.core.data.upload.UploadedAnimationMeta
 import com.osg.openanimation.repo.AnimationDataCollection.AIRPLANE
 import com.osg.openanimation.repo.AnimationDataCollection.CHECKMARK
 import com.osg.openanimation.repo.AnimationDataCollection.DAY_NIGHT_CYCLE
@@ -23,7 +23,7 @@ object FakeRepositoryState{
         it.metadata.hash to it.initialStats
     })
 
-    val uploadedAnimations = MutableStateFlow<Map<String, UploadedAnimation>>(emptyMap())
+    val uploadedAnimationsMeta = MutableStateFlow<Map<String, UploadedAnimationMeta>>(emptyMap())
 
     val userLikedAnimationsState: MutableStateFlow<Set<String>> = MutableStateFlow(emptySet())
 }
