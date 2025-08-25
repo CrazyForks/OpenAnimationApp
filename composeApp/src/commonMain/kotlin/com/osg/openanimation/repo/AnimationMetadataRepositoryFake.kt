@@ -11,12 +11,14 @@ import com.osg.openanimation.core.utils.extractSortedTags
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import org.koin.core.annotation.Factory
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
-class AnimationMetadataRepositoryFake(
-    private val networkSimulateDelay: Duration = 1.seconds,
-) : AnimationMetadataRepository {
+@Factory
+class AnimationMetadataRepositoryFake() : AnimationMetadataRepository {
+
+    private val networkSimulateDelay: Duration = 1.seconds
     private fun fetchTradingAnimationIds(): Set<String> {
         val statsMap = FakeRepositoryState.statsState.value
         return statsMap.entries.sortedByDescending {it.value.likeCount + it.value.downloadCount }

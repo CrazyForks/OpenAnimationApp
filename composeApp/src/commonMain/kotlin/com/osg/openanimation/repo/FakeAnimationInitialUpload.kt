@@ -1,27 +1,50 @@
 package com.osg.openanimation.repo
 
+import com.osg.openanimation.core.data.upload.ModerationStatus
 import com.osg.openanimation.core.data.upload.UploadedAnimationMeta
-import com.osg.openanimation.core.ui.di.domain.AnimationInitialUpload
+import com.osg.openanimation.core.ui.di.domain.AnimationUploader
+import com.osg.openanimation.core.ui.di.domain.UploadedMetadataRepository
 import kotlinx.coroutines.flow.update
+import org.koin.core.annotation.Factory
 import kotlin.time.Clock
 
-class FakeAnimationInitialUpload: AnimationInitialUpload {
+@Factory
+class FakeAnimationInitialUpload: AnimationUploader, UploadedMetadataRepository {
     override suspend fun processUploadAnimation(animationContent: String): String {
         val timeStamp = Clock.System.now().toEpochMilliseconds()
         val animationId = "uid_$timeStamp"
         val derivedMetaData = UploadedAnimationMeta(
-            animationId = animationId,
+            hash = animationId,
             uploadTimestamp = timeStamp,
             name = "My Animation Name",
             description = "My Animation Description",
             path = "$animationId.json",
-            tags = emptyList()
+            tags = emptyList(),
+            isSubmitted = false,
         )
-        FakeAnimationStorage.storeAnimation(animationId, animationContent)
-        FakeRepositoryState.uploadedAnimationsMeta.update { currentMap ->
-            currentMap + (animationId to derivedMetaData)
-        }
+        uploadAnimation(derivedMetaData, animationContent)
 
         return animationId
+    }
+
+    override suspend fun uploadAnimation(
+        uploadedAnimationMeta: UploadedAnimationMeta,
+        animationContent: String?
+    ) {
+        if (animationContent != null) {
+            FakeAnimationStorage.storeAnimation(uploadedAnimationMeta.path, animationContent)
+        }
+        FakeRepositoryState.uploadedAnimationsMeta.update { currentMap ->
+            currentMap + (uploadedAnimationMeta.hash to uploadedAnimationMeta)
+        }
+
+    }
+
+    override suspend fun fetchAnimationModerationStatus(hash: String): ModerationStatus {
+        return ModerationStatus.PENDING
+    }
+
+    override suspend fun fetchAnimationUploadedMeta(hash: String): UploadedAnimationMeta {
+        return FakeRepositoryState.uploadedAnimationsMeta.value.getValue(hash)
     }
 }

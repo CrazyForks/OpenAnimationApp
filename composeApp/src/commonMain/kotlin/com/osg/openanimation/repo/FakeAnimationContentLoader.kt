@@ -4,12 +4,14 @@ import com.osg.openanimation.core.ui.di.domain.AnimationContentLoader
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import openanimationapp.composeapp.generated.resources.Res
+import org.koin.core.annotation.Factory
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 
-class FakeAnimationContentLoader(
-    private val networkSimulateDelay: Duration = 500.milliseconds,
-) : AnimationContentLoader {
+
+@Factory
+class FakeAnimationContentLoader() : AnimationContentLoader {
+    private val networkSimulateDelay: Duration = 500.milliseconds
     override suspend fun fetchAnimationByPath(path: String): String {
         delay(networkSimulateDelay)
 
@@ -21,8 +23,8 @@ class FakeAnimationContentLoader(
 
 object FakeAnimationStorage {
     private val storage = MutableStateFlow<Map<String, String>>(emptyMap())
-    fun storeAnimation(animationId: String, data: String) {
-        storage.value = storage.value + (animationId to data)
+    fun storeAnimation(path: String, data: String) {
+        storage.value = storage.value + (path to data)
     }
 
     fun getAnimation(path: String): String? {

@@ -15,7 +15,6 @@ import com.osg.openanimation.repo.AnimationDataCollection.WALKING_DOG
 import com.osg.openanimation.repo.AnimationDataCollection.entries
 import kotlinx.coroutines.flow.MutableStateFlow
 
-const val TEST_USER_UID_PREFIX = "testUserUidPrefix"
 
 object FakeRepositoryState{
     val uidState = MutableStateFlow<String?>(null)

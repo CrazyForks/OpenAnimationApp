@@ -12,12 +12,13 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flatMapLatest
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
+import org.koin.core.annotation.Factory
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.milliseconds
 
-class FakeUserRepo(
-    private val networkSimulateDelay: Duration = 300.milliseconds,
-): UserRepository {
+@Factory
+class FakeUserRepo(): UserRepository {
+    private val networkSimulateDelay: Duration = 300.milliseconds
     @OptIn(ExperimentalCoroutinesApi::class)
     override val profileFlow: Flow<UserSessionState> = FakeRepositoryState.uidState.flatMapLatest {
         FakeRepositoryState.userLikedAnimationsState.map { likedSet ->
