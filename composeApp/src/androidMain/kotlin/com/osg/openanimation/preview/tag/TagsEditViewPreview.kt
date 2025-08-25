@@ -9,6 +9,10 @@ import com.osg.openanimation.core.ui.dashboard.TagsEditView
 @Preview
 @Composable
 fun TagsEditViewPreview() {
-    val tags = remember { mutableStateOf(listOf("tag1", "tag2", "a long tag")) }
-    TagsEditView(tags = tags.value, onTagsChange = { tags.value = it })
+    val tags = remember { mutableStateOf(setOf("tag1", "tag2", "a long tag")) }
+    TagsEditView(
+        tags = tags.value,
+        onTagsChange = { tags.value = it },
+        allTags = setOf("tag1", "tag2", "a long tag", "suggestion1", "suggestion2")
+    )
 }
