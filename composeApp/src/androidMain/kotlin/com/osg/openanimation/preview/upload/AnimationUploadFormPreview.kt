@@ -43,12 +43,14 @@ private fun AnimationUploadFormPreview(
             path = "/path/to/animation.json",
             isSubmitted = false
         ),
+        isUnsaved = true,
         moderationStatus = ModerationStatus.DRAFT,
         allTags = setOf("tag1", "tag2", "tag3", "example"),
         onPaletteSelected = {},
         onUploadClick = {},
         onTitleChanged = {},
         onTagsChanged = {},
-        onRemovalClick = {}
+        onRemovalClick = {},
+        onSaveClick = {}
     )
 }
