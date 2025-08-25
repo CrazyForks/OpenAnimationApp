@@ -47,4 +47,12 @@ class FakeAnimationInitialUpload: AnimationUploader, UploadedMetadataRepository 
     override suspend fun fetchAnimationUploadedMeta(hash: String): UploadedAnimationMeta {
         return FakeRepositoryState.uploadedAnimationsMeta.value.getValue(hash)
     }
+
+    override suspend fun onRemoveAnimation(hash: String) {
+        val meta = FakeRepositoryState.uploadedAnimationsMeta.value.getValue(hash)
+        FakeAnimationStorage.deleteAnimation(meta.path)
+        FakeRepositoryState.uploadedAnimationsMeta.update { currentMap ->
+            currentMap - hash
+        }
+    }
 }

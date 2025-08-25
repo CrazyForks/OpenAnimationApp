@@ -27,6 +27,10 @@ object FakeAnimationStorage {
         storage.value = storage.value + (path to data)
     }
 
+    fun deleteAnimation(path: String) {
+        storage.value = storage.value - path
+    }
+
     fun getAnimation(path: String): String? {
         return storage.value[path]
     }
