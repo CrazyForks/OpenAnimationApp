@@ -4,6 +4,8 @@ import com.osg.openanimation.core.data.upload.ModerationStatus
 import com.osg.openanimation.core.data.upload.UploadedAnimationMeta
 import com.osg.openanimation.core.ui.di.domain.AnimationUploader
 import com.osg.openanimation.core.ui.di.domain.UploadedMetadataRepository
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 import org.koin.core.annotation.Factory
 import kotlin.time.Clock
@@ -38,14 +40,23 @@ class FakeAnimationInitialUpload: AnimationUploader, UploadedMetadataRepository 
             currentMap + (uploadedAnimationMeta.hash to uploadedAnimationMeta)
         }
 
+        if (uploadedAnimationMeta.isSubmitted) {
+            FakeRepositoryState.moderationStatusState.update { currentMap ->
+                currentMap + (uploadedAnimationMeta.hash to ModerationStatus.PENDING)
+            }
+        }
     }
 
-    override suspend fun fetchAnimationModerationStatus(hash: String): ModerationStatus {
-        return ModerationStatus.PENDING
+    override fun moderationStatusFlow(hash: String): Flow<ModerationStatus> {
+        return FakeRepositoryState.moderationStatusState.map { currentMap ->
+            currentMap[hash] ?: ModerationStatus.DRAFT
+        }
     }
 
-    override suspend fun fetchAnimationUploadedMeta(hash: String): UploadedAnimationMeta {
-        return FakeRepositoryState.uploadedAnimationsMeta.value.getValue(hash)
+    override fun uploadedMetaFlow(hash: String): Flow<UploadedAnimationMeta> {
+        return FakeRepositoryState.uploadedAnimationsMeta.map { currentMap ->
+            currentMap.getValue(hash)
+        }
     }
 
     override suspend fun onRemoveAnimation(hash: String) {

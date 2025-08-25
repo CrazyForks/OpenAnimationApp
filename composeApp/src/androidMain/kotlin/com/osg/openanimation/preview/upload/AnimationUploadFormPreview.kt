@@ -48,6 +48,7 @@ private fun AnimationUploadFormPreview(
         onPaletteSelected = {},
         onUploadClick = {},
         onTitleChanged = {},
-        onTagsChanged = {}
+        onTagsChanged = {},
+        onRemovalClick = {}
     )
 }

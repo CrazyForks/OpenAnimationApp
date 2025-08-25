@@ -1,6 +1,7 @@
 package com.osg.openanimation.repo
 
 import com.osg.openanimation.core.data.stats.AnimationStats
+import com.osg.openanimation.core.data.upload.ModerationStatus
 import com.osg.openanimation.core.data.upload.UploadedAnimationMeta
 import com.osg.openanimation.repo.AnimationDataCollection.AIRPLANE
 import com.osg.openanimation.repo.AnimationDataCollection.CHECKMARK
@@ -23,6 +24,8 @@ object FakeRepositoryState{
     })
 
     val uploadedAnimationsMeta = MutableStateFlow<Map<String, UploadedAnimationMeta>>(emptyMap())
+
+    val moderationStatusState: MutableStateFlow<Map<String, ModerationStatus>> = MutableStateFlow(emptyMap())
 
     val userLikedAnimationsState: MutableStateFlow<Set<String>> = MutableStateFlow(emptySet())
 }
