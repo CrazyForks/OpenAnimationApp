@@ -6,6 +6,7 @@ import com.osg.openanimation.core.ui.di.domain.AnimationUploader
 import com.osg.openanimation.core.ui.di.domain.UploadedMetadataRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.mapNotNull
 import kotlinx.coroutines.flow.update
 import org.koin.core.annotation.Factory
 import kotlin.time.Clock
@@ -54,8 +55,8 @@ class FakeAnimationInitialUpload: AnimationUploader, UploadedMetadataRepository 
     }
 
     override fun uploadedMetaFlow(hash: String): Flow<UploadedAnimationMeta> {
-        return FakeRepositoryState.uploadedAnimationsMeta.map { currentMap ->
-            currentMap.getValue(hash)
+        return FakeRepositoryState.uploadedAnimationsMeta.mapNotNull { currentMap ->
+            currentMap[hash]
         }
     }
 
