@@ -4,6 +4,7 @@ import com.osg.openanimation.core.ui.BaseApp
 import org.koin.core.module.Module
 import org.koin.ksp.generated.defaultModule
 
+
 fun getBaseApp(
     platformModules : List<Module> = emptyList()
 ): BaseApp{

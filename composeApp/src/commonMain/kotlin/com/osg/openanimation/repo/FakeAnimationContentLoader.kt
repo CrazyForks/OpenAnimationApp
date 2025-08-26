@@ -15,9 +15,7 @@ class FakeAnimationContentLoader() : AnimationContentLoader {
     override suspend fun fetchAnimationByPath(path: String): String {
         delay(networkSimulateDelay)
 
-        return FakeAnimationStorage.getAnimation(path) ?: run {
-            Res.readBytes("files/$path").decodeToString()
-        }
+        return Res.readBytes("files/$path").decodeToString()
     }
 }
 

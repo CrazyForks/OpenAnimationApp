@@ -3,7 +3,6 @@ package com.osg.openanimation.repo
 import com.osg.openanimation.core.data.upload.ModerationStatus
 import com.osg.openanimation.core.data.upload.UploadedAnimationMeta
 import com.osg.openanimation.core.ui.di.domain.AnimationUploader
-import com.osg.openanimation.core.ui.di.domain.UploadedMetadataRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.mapNotNull
@@ -12,7 +11,7 @@ import org.koin.core.annotation.Factory
 import kotlin.time.Clock
 
 @Factory
-class FakeAnimationInitialUpload: AnimationUploader, UploadedMetadataRepository {
+class FakeAnimationInitialUpload: AnimationUploader {
     override suspend fun processUploadAnimation(animationContent: String): String {
         val timeStamp = Clock.System.now().toEpochMilliseconds()
         val animationId = "uid_$timeStamp"
@@ -66,5 +65,9 @@ class FakeAnimationInitialUpload: AnimationUploader, UploadedMetadataRepository 
         FakeRepositoryState.uploadedAnimationsMeta.update { currentMap ->
             currentMap - hash
         }
+    }
+
+    override suspend fun fetchUserAnimation(path: String): String {
+        return FakeAnimationStorage.getAnimation(path) ?: error("Animation not found")
     }
 }

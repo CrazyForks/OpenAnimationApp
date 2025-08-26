@@ -1,6 +1,6 @@
 [versions]
 agp = "8.10.1"
-kotlin = "2.2.0"
+kotlin = "2.2.10"
 android-minSdk = "35"
 android-compileSdk = "36"
 android-targetSdk = "36"
@@ -12,13 +12,13 @@ androidx-activityCompose = "1.10.1"
 kotlinx-datetime = "0.7.1"
 kotlinxSerializationCore = "1.9.0"
 koinBom = "4.1.0"
-koinAnnotationsVersion = "2.1.0"
 materialIconsCore = "1.7.3"
 coroutines = "1.10.2"
 atomicfu="0.29.0"
 okio = "3.16.0"
 keight = "0.0.02"
-ksp = "2.2.0-2.0.2"
+ksp = "2.2.10-2.0.2"
+koinAnnotationsVersion = "2.2.0-Beta3"
 
 [libraries]
 adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "adaptive" }

@@ -82,7 +82,7 @@ class FakeUserRepo(): UserRepository {
         }
     }
 
-    override fun userAnimationsFlow(): Flow<List<UploadedAnimationMeta>> {
+    override fun userAnimationsFlow(uid: String): Flow<List<UploadedAnimationMeta>> {
         return FakeRepositoryState.uploadedAnimationsMeta.map { it.values.toList() }
     }
 
