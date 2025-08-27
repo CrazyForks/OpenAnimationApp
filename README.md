@@ -33,7 +33,7 @@
 
 ## 🙏 Libraries Used 
 - [Compottie](https://github.com/alexzhirkevich/compottie)
-- [Koin](https://github.com/InsertKoinIO/koin) with annotations
+- [Koin](https://github.com/InsertKoinIO/koin)
 - [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html)
 
 
