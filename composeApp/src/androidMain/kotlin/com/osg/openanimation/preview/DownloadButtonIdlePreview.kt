@@ -1,5 +1,6 @@
 package com.osg.openanimation.preview
 
+import androidx.compose.material.icons.Icons
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -8,14 +9,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.tooling.preview.Preview
 import com.osg.openanimation.core.ui.details.CopyLinkToClipboardButton
-import com.osg.openanimation.core.ui.details.DownloadButton
+import com.osg.openanimation.core.ui.details.IconLoadingButton
+import com.osg.openanimation.core.ui.util.icons.Download
 
 @Preview(showBackground = true)
 @Composable
 fun DownloadButtonIdlePreview() {
     var isDownloadedTransitionState by remember { mutableStateOf(false) }
-    DownloadButton(
+    IconLoadingButton(
         isDownloadedTransition = isDownloadedTransitionState,
+        primaryIcon = Icons.Default.Download,
         onClick = {
             isDownloadedTransitionState = !isDownloadedTransitionState
         }

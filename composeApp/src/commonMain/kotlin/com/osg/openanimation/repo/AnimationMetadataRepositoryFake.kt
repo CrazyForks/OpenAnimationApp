@@ -2,21 +2,23 @@ package com.osg.openanimation.repo
 
 import com.osg.openanimation.core.data.animation.AnimationMetadata
 import com.osg.openanimation.core.data.stats.AnimationStats
-import com.osg.openanimation.core.ui.di.AnimationMetadataRepository
-import com.osg.openanimation.core.ui.di.data.FilterQueryType
-import com.osg.openanimation.core.ui.di.data.GuestQueryType
-import com.osg.openanimation.core.ui.di.data.SelectedQueryType
+import com.osg.openanimation.core.ui.di.domain.AnimationMetadataRepository
+import com.osg.openanimation.core.ui.graph.FilterQueryType
+import com.osg.openanimation.core.ui.graph.GuestQueryType
+import com.osg.openanimation.core.ui.graph.SelectedQueryType
 import com.osg.openanimation.core.ui.home.model.filterSortByText
 import com.osg.openanimation.core.utils.extractSortedTags
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import org.koin.core.annotation.Factory
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
-class AnimationMetadataRepositoryFake(
-    private val networkSimulateDelay: Duration = 1.seconds,
-) : AnimationMetadataRepository {
+@Factory
+class AnimationMetadataRepositoryFake() : AnimationMetadataRepository {
+
+    private val networkSimulateDelay: Duration = 1.seconds
     private fun fetchTradingAnimationIds(): Set<String> {
         val statsMap = FakeRepositoryState.statsState.value
         return statsMap.entries.sortedByDescending {it.value.likeCount + it.value.downloadCount }

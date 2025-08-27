@@ -2,12 +2,16 @@
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompilationTask
 
 plugins {
     alias(libs.plugins.kotlinMultiplatform)
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.composeHotReload)
+
+    alias(libs.plugins.ksp)
 }
 
 
@@ -43,6 +47,7 @@ kotlin {
             implementation(libs.androidx.activity.compose)
         }
         commonMain {
+            kotlin.srcDir("build/generated/ksp/metadata/commonMain/kotlin")
             dependencies {
                 implementation(projects.core.data)
                 implementation(projects.core.ui)
@@ -66,6 +71,23 @@ kotlin {
         }
     }
 }
+
+ksp {
+    arg("KOIN_USE_COMPOSE_VIEWMODEL","true")
+    arg("KOIN_CONFIG_CHECK","true")
+    arg("KOIN_DEFAULT_MODULE","true")
+}
+
+dependencies {
+    add("kspCommonMainMetadata", libs.koin.ksp.compiler)
+}
+
+project.tasks.withType(KotlinCompilationTask::class.java).configureEach {
+    if(name != "kspCommonMainKotlinMetadata") {
+        dependsOn("kspCommonMainKotlinMetadata")
+    }
+}
+
 
 android {
     namespace = "org.osg.openanimation"

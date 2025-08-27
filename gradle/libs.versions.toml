@@ -1,10 +1,10 @@
 [versions]
 agp = "8.10.1"
-kotlin = "2.2.0"
+kotlin = "2.2.10"
 android-minSdk = "35"
-android-compileSdk = "35"
+android-compileSdk = "36"
 android-targetSdk = "36"
-adaptive = "1.1.1"
+adaptive = "1.1.2"
 compose-multiplatform = "1.8.2"
 androidx-lifecycle = "2.9.1"
 androidx-navigation = "2.9.0-beta03"
@@ -16,6 +16,10 @@ materialIconsCore = "1.7.3"
 coroutines = "1.10.2"
 atomicfu="0.29.0"
 okio = "3.16.0"
+keight = "0.0.02"
+ksp = "2.2.10-2.0.2"
+koinAnnotationsVersion = "2.2.0-Beta3"
+composeHotReload = "1.0.0-beta05"
 
 [libraries]
 adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "adaptive" }
@@ -34,6 +38,11 @@ kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.
 koin-bom = { module = "io.insert-koin:koin-bom", version.ref = "koinBom" }
 koin-core = { module = "io.insert-koin:koin-core" }
 koin-compose = { module = "io.insert-koin:koin-compose" }
+koin-compose-viewmodel = {group = "io.insert-koin", name = "koin-compose-viewmodel"}
+
+koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koinAnnotationsVersion" }
+koin-ksp-compiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koinAnnotationsVersion" }
+
 material-icons-core = { module = "org.jetbrains.compose.material:material-icons-core", version.ref = "materialIconsCore" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-coroutines-swing = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "coroutines" }
@@ -42,6 +51,7 @@ okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 okio-fakefilesystem = { module = "com.squareup.okio:okio-fakefilesystem", version.ref = "okio" }
 atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomicfu" }
 
+keight = { module = "io.github.alexzhirkevich:keight", version.ref = "keight" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
@@ -51,3 +61,5 @@ composeCompiler = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "k
 kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin" }
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "composeHotReload"}
