@@ -19,18 +19,16 @@ import kotlin.time.Duration.Companion.milliseconds
 @Factory
 class FakeUserRepo(): UserRepository {
     private val networkSimulateDelay: Duration = 300.milliseconds
+
+
     @OptIn(ExperimentalCoroutinesApi::class)
-    override val profileFlow: Flow<UserSessionState> = FakeRepositoryState.uidState.flatMapLatest {
+    override val profileFlow: Flow<UserSessionState> = FakeRepositoryState.profileState.flatMapLatest {
         FakeRepositoryState.userLikedAnimationsState.map { likedSet ->
             if (it == null) {
                 UserSessionState.SignedOut
             } else {
                 UserSessionState.SignedIn(
-                    userProfile = UserProfile(
-                        uid = it,
-                        firstName = "Test User",
-                        email = "test@gamil.com"
-                    ),
+                    userProfile = it,
                     favorites = likedSet
                 )
             }
@@ -87,10 +85,14 @@ class FakeUserRepo(): UserRepository {
     }
 
     override fun onUserSignOut() {
-        FakeRepositoryState.uidState.value = null
+        FakeRepositoryState.profileState.value = null
     }
 
     override fun onRegistered(signInResultState: Result<SignInResult>) {
 
+    }
+
+    override suspend fun updateProfile(userProfile: UserProfile) {
+        FakeRepositoryState.profileState.value = userProfile
     }
 }

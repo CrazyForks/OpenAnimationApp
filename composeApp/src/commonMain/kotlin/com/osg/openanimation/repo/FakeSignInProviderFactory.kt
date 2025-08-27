@@ -2,6 +2,7 @@ package com.osg.openanimation.repo
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import com.osg.openanimation.core.data.user.UserProfile
 import com.osg.openanimation.core.ui.components.signin.SignInIdentifier
 import com.osg.openanimation.core.ui.components.signin.SignInProvider
 import com.osg.openanimation.core.ui.components.signin.SignInResult
@@ -16,7 +17,12 @@ class GoogleSignInSim(
     @Composable
     override fun SignInDialog(onComplete: (Result<SignInResult>) -> Unit) {
         LaunchedEffect(Unit) {
-            FakeRepositoryState.uidState.value = result.getOrThrow().uid
+            val res = result.getOrThrow()
+            FakeRepositoryState.profileState.value = UserProfile(
+                uid = res.uid,
+                email = "test@test.com",
+                displayName = "John Snow",
+            )
             onComplete(
                 result
             )

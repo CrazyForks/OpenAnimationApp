@@ -3,6 +3,7 @@ package com.osg.openanimation.repo
 import com.osg.openanimation.core.data.stats.AnimationStats
 import com.osg.openanimation.core.data.upload.ModerationStatus
 import com.osg.openanimation.core.data.upload.UploadedAnimationMeta
+import com.osg.openanimation.core.data.user.UserProfile
 import com.osg.openanimation.repo.AnimationDataCollection.AIRPLANE
 import com.osg.openanimation.repo.AnimationDataCollection.CHECKMARK
 import com.osg.openanimation.repo.AnimationDataCollection.DAY_NIGHT_CYCLE
@@ -18,7 +19,8 @@ import kotlinx.coroutines.flow.MutableStateFlow
 
 
 object FakeRepositoryState{
-    val uidState = MutableStateFlow<String?>(null)
+
+    val profileState = MutableStateFlow<UserProfile?>(null)
     val statsState: MutableStateFlow<Map<String, AnimationStats>> = MutableStateFlow(entries.associate {
         it.metadata.hash to it.initialStats
     })
