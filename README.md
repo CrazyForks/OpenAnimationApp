@@ -28,10 +28,12 @@
   <br>
 </div>
 
+## 🔥 New Features
+<img src="readme_images/drop_edit.gif" alt="Drag and drop and color palette editing"/>
 
 ## 🙏 Libraries Used 
 - [Compottie](https://github.com/alexzhirkevich/compottie)
-- [Koin](https://github.com/InsertKoinIO/koin)
+- [Koin](https://github.com/InsertKoinIO/koin) with annotations
 - [Kotlin Multiplatform](https://kotlinlang.org/docs/multiplatform.html)
 
 
@@ -46,7 +48,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 ## 🚀 Roadmap & TODO
 
 ### Features
-- [ ] 🎨 **Animation Color Scheme Picker** - Add ability for users to customize animation color palettes
-- [ ] 👥 **Community Animations** - Implement support for user-submitted animations with voting system
+- [x] 🎨 **Animation Color Scheme Picker** - Add ability for users to customize animation color palettes
+- [x] 👥 **Community Animations** - Implement support for user-submitted animations with voting system
 - [ ] ⚡ **Rendering Optimization** - Improve animation playback performance across platforms
 - [ ] 📊 **Performance Metrics** - Add analytics for rendering times and resource usage
