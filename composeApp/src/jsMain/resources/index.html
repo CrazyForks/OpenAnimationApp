@@ -6,13 +6,16 @@
     <link rel="icon" type="image/x-icon" href="logo.png">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="styles.css">
-    <script type="application/javascript" src="preload.js"></script>
+    <script type="application/javascript" src="openAnimation.js"></script>
 </head>
 <body>
     <div id="splash" class="gradient-background">
-        <img src="logo.png" alt="Stay In Tap logo">
-        <!-- Loading indicator will be added here by JavaScript -->
+        <img src="logo.png" alt="OpenAnimation - Lottie animations powered by Kotlin Multiplatform">
+        <div class="loading-container">
+            <div class="loading-spinner"></div>
+            <div class="loading-text">Loading</div>
+        </div>
     </div>
-    <canvas id="ComposeTarget"></canvas>
+    <div id="ComposeTarget"></div>
 </body>
 </html>
