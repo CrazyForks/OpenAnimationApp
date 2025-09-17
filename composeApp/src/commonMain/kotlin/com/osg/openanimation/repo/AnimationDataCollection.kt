@@ -135,6 +135,20 @@ enum class AnimationDataCollection(
             )
         )
     ),
+    LOADING_EMOJI(
+        AnimationMetadata(
+            name = "Loading Emoji",
+            hash = "-20657691543",
+            localFileName = "loading_emo.json",
+            tags = setOf(
+                "loading",
+                "emoji",
+                "face",
+                "expression",
+                "waiting"
+            )
+        )
+    ),
     SYNC_DOTS(
         AnimationMetadata(
             name = "Sync Dots",

@@ -75,4 +75,9 @@ private val AnimationDataCollection.initialStats: AnimationStats
             downloadCount = 1600,
             likeCount = 1200
         )
+
+        AnimationDataCollection.LOADING_EMOJI -> AnimationStats(
+            downloadCount = 700,
+            likeCount = 355
+        )
     }
