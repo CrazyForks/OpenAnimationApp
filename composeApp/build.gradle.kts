@@ -9,7 +9,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-    alias(libs.plugins.composeHotReload)
+//    alias(libs.plugins.composeHotReload)
 
     alias(libs.plugins.ksp)
 }
@@ -39,9 +39,8 @@ kotlin {
             isStatic = true
         }
     }
-    jvm("desktop")
+    jvm()
     sourceSets {
-        val desktopMain by getting
         androidMain.dependencies {
             implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
@@ -51,21 +50,23 @@ kotlin {
             dependencies {
                 implementation(projects.core.data)
                 implementation(projects.core.ui)
-                implementation(libs.androidx.navigation.compose)
                 implementation(compose.runtime)
                 implementation(compose.foundation)
-                implementation(compose.material3)
                 implementation(compose.ui)
-                implementation(compose.materialIconsExtended)
                 implementation(compose.components.resources)
-                implementation(compose.components.uiToolingPreview)
+
+                implementation(libs.material3)
+                implementation(libs.material3.navigation.suite)
+                implementation(libs.androidx.navigation.compose)
+
+                implementation(libs.material.icons.core)
                 implementation(libs.androidx.lifecycle.viewmodel)
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(project.dependencies.platform(libs.koin.bom))
                 implementation(libs.koin.core)
             }
         }
-        desktopMain.dependencies {
+        jvmMain.dependencies {
             implementation(compose.desktop.currentOs)
             implementation(libs.kotlinx.coroutines.swing)
         }
@@ -91,7 +92,7 @@ project.tasks.withType(KotlinCompilationTask::class.java).configureEach {
 
 android {
     namespace = "org.osg.openanimation"
-    compileSdk = libs.versions.android.compileSdk.get().toInt()
+    compileSdk = libs.versions.android.targetSdk.get().toInt()
 
     defaultConfig {
         applicationId = "org.osg.openanimation"

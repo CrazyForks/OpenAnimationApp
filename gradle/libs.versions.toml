@@ -1,28 +1,35 @@
 [versions]
-agp = "8.10.1"
+agp = "8.11.1"
 kotlin = "2.2.20"
-android-minSdk = "35"
-android-compileSdk = "36"
+android-minSdk = "34"
 android-targetSdk = "36"
-adaptive = "1.1.2"
-compose-multiplatform = "1.9.0"
-androidx-lifecycle = "2.9.4"
-androidx-navigation = "2.9.0"
-androidx-activityCompose = "1.11.0"
-kotlinx-datetime = "0.7.1"
+compose-multiplatform = "1.10.0-alpha03"
 kotlinxSerializationCore = "1.9.0"
-koinBom = "4.1.1"
-materialIconsCore = "1.7.3"
+androidx-activityCompose = "1.11.0"
+androidx-navigation = "2.9.1"
+androidx-lifecycle = "2.10.0-alpha03"
+composeHotReload = "1.0.0-rc02"
+kotlinx-datetime = "0.7.1"
 coroutines = "1.10.2"
+koinBom = "4.1.1"
+adaptive = "1.2.0-beta01"
+materialIconsCore = "1.7.3"
+koinAnnotationsVersion = "2.3.0"
+ksp = "2.2.20-2.0.3"
+material3 = "1.10.0-alpha03"
+okio = "3.16.2"
 atomicfu="0.29.0"
-okio = "3.16.0"
-keight = "0.0.03"
-ksp = "2.2.20-2.0.2"
-koinAnnotationsVersion = "2.2.0-RC1"
-composeHotReload = "1.0.0-beta07"
+keight = "0.0.04"
+collection="1.5.0"
 
 [libraries]
-adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "adaptive" }
+material3-adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "adaptive" }
+material-icons-core = { module = "org.jetbrains.compose.material:material-icons-core", version.ref = "materialIconsCore" }
+material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "material3" }
+material3-navigation-suite = { module = "org.jetbrains.compose.material3:material3-adaptive-navigation-suite", version.ref = "material3" }
+
+
+
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
 androidx-lifecycle-viewmodel = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-viewmodel-compose = { group = "org.jetbrains.androidx.lifecycle", name = "lifecycle-viewmodel-compose", version.ref = "androidx-lifecycle" }
@@ -43,7 +50,6 @@ koin-compose-viewmodel = {group = "io.insert-koin", name = "koin-compose-viewmod
 koin-annotations = { module = "io.insert-koin:koin-annotations", version.ref = "koinAnnotationsVersion" }
 koin-ksp-compiler = { module = "io.insert-koin:koin-ksp-compiler", version.ref = "koinAnnotationsVersion" }
 
-material-icons-core = { module = "org.jetbrains.compose.material:material-icons-core", version.ref = "materialIconsCore" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 kotlinx-coroutines-swing = {group = "org.jetbrains.kotlinx", name = "kotlinx-coroutines-swing", version.ref = "coroutines" }
 
@@ -52,6 +58,10 @@ okio-fakefilesystem = { module = "com.squareup.okio:okio-fakefilesystem", versio
 atomicfu = { module = "org.jetbrains.kotlinx:atomicfu", version.ref = "atomicfu" }
 
 keight = { module = "io.github.alexzhirkevich:keight", version.ref = "keight" }
+keight-core = { module = "io.github.alexzhirkevich:keight-core", version.ref = "keight" }
+androidx-collection = { module = "androidx.collection:collection", version.ref = "collection" }
+
+
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }
