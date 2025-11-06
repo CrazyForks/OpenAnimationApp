@@ -1,21 +1,23 @@
 [versions]
 agp = "8.11.1"
-kotlin = "2.2.20"
+kotlin = "2.2.21"
 android-minSdk = "34"
 android-targetSdk = "36"
-compose-multiplatform = "1.10.0-alpha03"
+compose-multiplatform = "1.10.0-beta01"
+androidx-lifecycle = "2.10.0-alpha04"
+adaptive = "1.2.0"
+ksp = "2.3.0"
+
+
 kotlinxSerializationCore = "1.9.0"
 androidx-activityCompose = "1.11.0"
 androidx-navigation = "2.9.1"
-androidx-lifecycle = "2.10.0-alpha03"
 composeHotReload = "1.0.0-rc02"
 kotlinx-datetime = "0.7.1"
 coroutines = "1.10.2"
 koinBom = "4.1.1"
-adaptive = "1.2.0-beta01"
 materialIconsCore = "1.7.3"
 koinAnnotationsVersion = "2.3.0"
-ksp = "2.2.20-2.0.3"
 material3 = "1.10.0-alpha03"
 okio = "3.16.2"
 atomicfu="0.29.0"
@@ -61,6 +63,12 @@ keight = { module = "io.github.alexzhirkevich:keight", version.ref = "keight" }
 keight-core = { module = "io.github.alexzhirkevich:keight-core", version.ref = "keight" }
 androidx-collection = { module = "androidx.collection:collection", version.ref = "collection" }
 
+components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "compose-multiplatform" }
+ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose-multiplatform" }
+runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose-multiplatform" }
+foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose-multiplatform" }
+ui-tooling-preview = { module = "org.jetbrains.compose.ui:ui-tooling-preview", version.ref = "compose-multiplatform" }
+ui-tooling = { module = "org.jetbrains.compose.ui:ui-tooling", version.ref = "compose-multiplatform" }
 
 
 [plugins]
