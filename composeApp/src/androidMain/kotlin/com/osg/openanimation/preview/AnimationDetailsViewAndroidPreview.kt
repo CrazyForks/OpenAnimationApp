@@ -23,6 +23,8 @@ import com.osg.openanimation.core.ui.details.model.ds.DetailsScreenStates
 import com.osg.openanimation.core.ui.details.model.ds.DetailsUiPane
 import com.osg.openanimation.core.ui.home.domain.ColorPaletteWithMetadata
 import com.osg.openanimation.core.ui.theme.TrueTheme
+import kotlinx.collections.immutable.persistentListOf
+import kotlinx.collections.immutable.toImmutableList
 import kotlinx.coroutines.delay
 
 @Preview(showBackground = true)
@@ -40,14 +42,14 @@ fun AnimationDetailsPanesAndroidShimmerPreview() {
                     metadata = a.metadata,
                     editableAnimation = ColorsEditPalette(
                         processedJsonState = AnimationDataState.Processing,
-                        options = listOf(
-                            listOf(
+                        options = persistentListOf(
+                            persistentListOf(
                                 Color(0xFF000000),
                                 Color(0xFFFFFFFF),
                                 Color(0xFFFF0000),
                                 Color(0xFF00FF00),
                             ),
-                            listOf(
+                            persistentListOf(
                                 Color(0xFF000000),
                                 Color(0xFFFFFFFF),
                                 Color(0xFFFF0000),
@@ -61,7 +63,7 @@ fun AnimationDetailsPanesAndroidShimmerPreview() {
                     likeCount = 10,
                 ),
             ),
-            relatedAnimations = generateAnimationUiDataList().take(4),
+            relatedAnimations = generateAnimationUiDataList().take(4).toImmutableList(),
         )
         AnimationDetailsPanes(
             modifier = Modifier.fillMaxSize().statusBarsPadding(),
@@ -109,7 +111,7 @@ fun AnimationDetailsPanesAndroidPreview() {
                     metadata = a.metadata,
                     editableAnimation = s.copy(
                         processedJsonState = AnimationDataState.Processing,
-                        options = s.options + s.options,
+                        options = (s.options + s.options).toImmutableList(),
                     ),
                 ),
                 animationStats = AnimationStats(
@@ -117,7 +119,7 @@ fun AnimationDetailsPanesAndroidPreview() {
                     likeCount = 10,
                 ),
             ),
-            relatedAnimations = generateAnimationUiDataList().take(4),
+            relatedAnimations = generateAnimationUiDataList().take(4).toImmutableList(),
         )
         AnimationDetailsPanes(
             modifier = Modifier.fillMaxSize(),

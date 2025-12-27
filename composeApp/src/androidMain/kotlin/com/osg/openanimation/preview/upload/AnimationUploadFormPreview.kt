@@ -9,6 +9,7 @@ import com.osg.openanimation.core.data.upload.UploadedAnimationMeta
 import com.osg.openanimation.core.ui.color.model.ColorsEditPalette
 import com.osg.openanimation.core.ui.components.lottie.AnimationDataState
 import com.osg.openanimation.core.ui.dashboard.AnimationUploadForm
+import kotlinx.collections.immutable.persistentListOf
 
 @PreviewScreenSizes
 @Composable
@@ -19,14 +20,14 @@ private fun AnimationUploadFormPreview(
         modifier = Modifier,
         editableAnimation = ColorsEditPalette(
             processedJsonState = AnimationDataState.Processing,
-            options = listOf(
-                listOf(
+            options = persistentListOf(
+                persistentListOf(
                     Color(0xFF000000),
                     Color(0xFFFFFFFF),
                     Color(0xFFFF0000),
                     Color(0xFF00FF00),
                 ),
-                listOf(
+                persistentListOf(
                     Color(0xFF000000),
                     Color(0xFFFFFFFF),
                     Color(0xFFFF0000),

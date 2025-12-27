@@ -12,6 +12,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.osg.openanimation.core.ui.color.ui.ColorPaletteOptionsView
+import kotlinx.collections.immutable.persistentListOf
 
 @Preview
 @Composable
@@ -38,14 +39,14 @@ fun ColorsEditView(
 
     ColorPaletteOptionsView(
         modifier = modifier,
-        transformOptions = listOf(
-            listOf(
+        transformOptions = persistentListOf(
+            persistentListOf(
                 Color(0xFF000000),
                 Color(0xFFFFFFFF),
                 Color(0xFFFF0000),
                 Color(0xFF00FF00),
             ),
-            listOf(
+            persistentListOf(
                 Color(0xffff9a9e),
                 Color(0xFFFFFFFF),
                 Color(0xff0059ff),

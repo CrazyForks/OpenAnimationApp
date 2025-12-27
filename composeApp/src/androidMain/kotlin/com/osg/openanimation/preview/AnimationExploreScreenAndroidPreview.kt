@@ -18,6 +18,7 @@ import com.osg.openanimation.core.ui.theme.TrueTheme
 import com.osg.openanimation.core.ui.util.resource.string
 import com.osg.openanimation.repo.AnimationDataCollection
 import com.osg.openanimation.repo.fromLocaleStorage
+import kotlinx.collections.immutable.toImmutableList
 
 
 @Composable
@@ -46,10 +47,10 @@ fun AnimationExploreScreenAndroidPreview() {
     TrueTheme {
         AnimationGrid(
             screenData = ExploreScreenStates.Success(
-                animations = generateAnimationUiDataList(),
+                animations = generateAnimationUiDataList().toImmutableList(),
                 categories = AnimationCategory.entries.map {
                     SelectedQueryType.Tag(it.strResource.string)
-                },
+                }.toImmutableList(),
                 selected = SelectedQueryType.ExploreCategory.Explore
             ),
             onDestination = {},
