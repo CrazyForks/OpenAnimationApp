@@ -50,10 +50,10 @@ kotlin {
             dependencies {
                 implementation(projects.core.data)
                 implementation(projects.core.ui)
-                implementation(compose.runtime)
-                implementation(compose.foundation)
-                implementation(compose.ui)
-                implementation(compose.components.resources)
+                implementation(libs.runtime)
+                implementation(libs.foundation)
+                implementation(libs.ui)
+                implementation(libs.components.resources)
 
                 implementation(libs.material3)
                 implementation(libs.material3.navigation.suite)
