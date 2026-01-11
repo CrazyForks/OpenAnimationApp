@@ -42,7 +42,6 @@ kotlin {
     jvm()
     sourceSets {
         androidMain.dependencies {
-            implementation(compose.preview)
             implementation(libs.androidx.activity.compose)
         }
         commonMain {
@@ -64,6 +63,7 @@ kotlin {
                 implementation(libs.androidx.lifecycle.runtime.compose)
                 implementation(project.dependencies.platform(libs.koin.bom))
                 implementation(libs.koin.core)
+                implementation(libs.ui.tooling.preview)
             }
         }
         jvmMain.dependencies {
@@ -80,8 +80,10 @@ ksp {
 }
 
 dependencies {
+    debugImplementation(libs.ui.tooling)
     add("kspCommonMainMetadata", libs.koin.ksp.compiler)
 }
+
 
 project.tasks.withType(KotlinCompilationTask::class.java).configureEach {
     if(name != "kspCommonMainKotlinMetadata") {
@@ -118,9 +120,7 @@ android {
 }
 
 
-dependencies {
-    debugImplementation(compose.uiTooling)
-}
+
 
 afterEvaluate {
     // to avoid kotlinStorePackageLock failing
