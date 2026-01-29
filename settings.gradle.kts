@@ -28,6 +28,7 @@ dependencyResolutionManagement {
     }
 }
 
+include("androidApp")
 include("core:data")
 include("core:ui")
 include(":compottie:compottie")
