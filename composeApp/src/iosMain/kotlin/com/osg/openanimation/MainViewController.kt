@@ -1,10 +1,15 @@
 package com.osg.openanimation
 
 import androidx.compose.ui.window.ComposeUIViewController
+import com.osg.openanimation.core.ui.AppEntry
+import org.koin.plugin.module.dsl.startKoin
+import platform.UIKit.UIViewController
 
-val app = getBaseApp()
 
 @Suppress("unused", "FunctionName")
-fun MainViewController() = ComposeUIViewController {
-    app.AppEntry()
+fun MainViewController(): UIViewController {
+    startKoin<PreviewApplication>()
+    return ComposeUIViewController {
+        AppEntry()
+    }
 }

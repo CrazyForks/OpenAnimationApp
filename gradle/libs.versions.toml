@@ -11,7 +11,7 @@ runtime-annotation = "1.10.6"
 
 kotlinxSerializationCore = "1.11.0"
 androidx-activityCompose = "1.13.0"
-androidx-navigation = "2.9.1"
+androidx-navigation = "2.9.2"
 composeHotReload = "1.0.0"
 kotlinx-datetime = "0.7.1"
 coroutines = "1.10.2"
@@ -22,9 +22,10 @@ material3 = "1.10.0-alpha05"
 okio = "3.17.0"
 atomicfu="0.32.1"
 keight = "0.0.04"
-collection="1.5.0"
+collection="1.6.0"
 kotlinxCollectionsImmutable = "0.4.0"
 stabilityAnalyzer = "0.7.3"
+koinCompilerPlugin = "0.6.2"
 
 [libraries]
 material3-adaptive = { module = "org.jetbrains.compose.material3.adaptive:adaptive", version.ref = "adaptive" }
@@ -83,5 +84,5 @@ kotlin-serialization = { id = "org.jetbrains.kotlin.plugin.serialization", versi
 kotlinMultiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
 kotlinJvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
 ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
-composeHotReload = { id = "org.jetbrains.compose.hot-reload", version.ref = "composeHotReload"}
 stability-analyzer = {id = "com.github.skydoves.compose.stability.analyzer", version.ref = "stabilityAnalyzer" }
+koin-compiler = { id = "io.insert-koin.compiler.plugin", version.ref = "koinCompilerPlugin" }

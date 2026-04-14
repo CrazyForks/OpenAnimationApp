@@ -7,11 +7,13 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.WindowPlacement
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.rememberWindowState
+import com.osg.openanimation.core.ui.AppEntry
 import com.osg.openanimation.core.ui.util.icons.brandingpack.LogoVector
+import org.koin.plugin.module.dsl.startKoin
 
 
 fun main() = application {
-    val basePreviewApp = getBaseApp()
+    startKoin<PreviewApplication>()
     Window(
         icon = rememberVectorPainter(image = LogoVector),
         state = rememberWindowState(
@@ -23,6 +25,6 @@ fun main() = application {
 
         window.background = java.awt.Color(Color.Green.toArgb())
 
-        basePreviewApp.AppEntry()
+       AppEntry()
     }
 }

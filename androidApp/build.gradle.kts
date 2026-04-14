@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.composeCompiler)
+    alias(libs.plugins.koin.compiler)
 }
 
 dependencies {
@@ -55,3 +56,6 @@ dependencies {
     debugImplementation(libs.ui.tooling)
 }
 
+koinCompiler {
+    userLogs = true
+}
