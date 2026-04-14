@@ -8,8 +8,6 @@ plugins {
     alias(libs.plugins.androidLibrary)
     alias(libs.plugins.composeMultiplatform)
     alias(libs.plugins.composeCompiler)
-//    alias(libs.plugins.composeHotReload)
-
     alias(libs.plugins.ksp)
 }
 
@@ -23,7 +21,7 @@ kotlin {
         }
         binaries.executable()
     }
-    androidLibrary {
+    android {
         namespace = "org.osg.openanimation.app"
         compileSdk = libs.versions.android.targetSdk.get().toInt()
         minSdk = libs.versions.android.minSdk.get().toInt()
